@@ -1,0 +1,30 @@
+/**
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2024 Feedzai
+ */
+.network-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: auto;
+  gap: 1.5rem;
+  padding: 2rem;
+
+  &__entry {
+    margin: 0;
+    padding: 1rem;
+    width: max-content;
+    height: 2rem;
+    text-align: left;
+    border: 1px solid lightgray;
+    line-height: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 16px -8px #1b1e2e69;
+  }
+}
