@@ -1,6 +1,10 @@
 <div align="center">
 <h1>@feedzai/js-utilities</h1>
 <p>A collection of common javascript utilities for web projects</p>
+<br />
+
+[**Read The Docs**](https://feedzai.github.io/js-utilities/)
+
 </div>
 
 ---
@@ -15,17 +19,17 @@
 
 ## Intro
 
-In the vast landscape of JavaScript and TypeScript development, having a reliable set of tools at your disposal can make all the difference. Say hello to `@feedzai/js-utilities`, a comprehensive collection of JavaScript helpers, functions, and custom React hooks designed to streamline your projects with ease and efficiency.
+In this vast landscape of JavaScript and TypeScript development, having a reliable set of tools at your disposal when building web projects can make all the difference. `@feedzai/js-utilities` is a comprehensive collection of JavaScript helpers, functions and custom React hooks designed to streamline projects with ease and efficiency.
 
-With this package, developers gain access to a treasure trove of utilities carefully crafted to simplify common tasks encountered in JavaScript and TypeScript projects. From handy helpers to custom React hooks, this library empowers developers to write cleaner, more concise code without sacrificing functionality.
+With this package, developers gain access to a treasure trove of utilities crafted to simplify common tasks encountered in JS/TS projects. From handy helpers to custom React hooks, this library empowers developers to write cleaner, more concise code without sacrificing functionality.
 
-Each function and hook is tested to ensure functionality, effectiveness whilst giving developers the confidence to integrate them seamlessly into their projects. It comes with comprehensive documentation, making it a breeze to navigate and utilize its features effectively.
+Each function and hook is [tested](https://github.com/feedzai/js-utilities/tree/main/cypress/test) to ensure functionality and effectiveness, whilst giving developers the confidence to integrate them seamlessly into their projects.
 
-Whether you're working in a traditional environment or embracing the latest ES Modules, it has you covered. The package is available in both UMD and ES Modules formats, ensuring compatibility with a wide range of project setups.
+It also comes with comprehensive documentation, making it a breeze to navigate and utilize its features effectively.
 
-No matter your development preferences, the package adapts to fit seamlessly into your workflow.
+The package is available in both UMD and ES Modules formats so, whether you're working in a traditional environment or embracing the latest ES Modules, we have you covered.
 
-For JavaScript and TypeScript developers seeking a lightweight but robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` is the answer. Explore its extensive array of helpers, functions, and React hooks today, and discover a smoother, more efficient approach to web development.
+For JavaScript and TypeScript developers seeking a lightweight but robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` might jus be the answer!
 
 ## Table of Contents
 
@@ -89,7 +93,14 @@ The bundle is available as:
 To import a piece of code into your javascript project just do:
 
 ```js
+// Just one function
+import { throwError } from "@feedzai/js-utilities";
+
+// Multiple functions
 import { callIfExists, throwError, getLSItem, useConstant } from "@feedzai/js-utilities";
+
+// Alias the whole object
+import * as JS_UTILS from "@feedzai/js-utilities";
 ```
 
 ## Functions
