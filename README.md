@@ -1,4 +1,6 @@
 <div align="center">
+<img src="./docs/static/img/logo.svg" width="64" height="64" alt="">
+
 <h1>@feedzai/js-utilities</h1>
 <p>A collection of common javascript utilities for web projects</p>
 <br />
