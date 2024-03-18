@@ -1,0 +1,31 @@
+---
+title: flatten
+---
+Flattens an array for a certain number of levels deep. It can do it up to a certain depth or recursively.
+
+## API
+
+```typescript
+function flatten<T>(arr: T[], level?: number | boolean);
+```
+
+### Usage
+
+```typescript
+import { flatten } from "@feedzai/js-utilities";
+
+const array = [1, [2, [3, [4]], 5]]
+
+flatten(array, true)
+// => [1, 2, 3, 4, 5]
+
+flattenDepth(array, 1)
+// => [1, 2, [3, [4]], 5]
+
+flattenDepth(array, 2)
+// => [1, 2, 3, [4], 5]
+
+flatten(array, 5]])
+// => [1, 2, [3, [4]], 5]
+
+```

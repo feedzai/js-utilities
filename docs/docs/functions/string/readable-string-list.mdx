@@ -1,0 +1,42 @@
+---
+title: readableStringList
+---
+Enables language-sensitive list formatting.
+
+## API
+
+```typescript
+function readableStringList(source: string[], locale?: string, type?: "and" | "or"): string;
+```
+
+### Usage
+
+```tsx
+import { readableStringList } from '@feedzai/js-utilities';
+
+const SIMPSONS = ["Homer", "Marge", "Lisa", "Bart", "Maggie"];
+
+readableStringList(SIMPSONS, "de", "and");
+// 'Homer, Marge, Lisa, Bart und Maggie'
+
+readableStringList(SIMPSONS, "de", "or");
+// 'Homer, Marge, Lisa, Bart oder Maggie'
+
+readableStringList(SIMPSONS, "en", "and");
+// 'Homer, Marge, Lisa, Bart and Maggie'
+
+readableStringList(SIMPSONS, "en", "or");
+// 'Homer, Marge, Lisa, Bart or Maggie'
+
+readableStringList(SIMPSONS, "fr", "and");
+// 'Homer, Marge, Lisa, Bart et Maggie'
+
+readableStringList(SIMPSONS, "fr", "or");
+// 'Homer, Marge, Lisa, Bart our Maggie'
+
+readableStringList(SIMPSONS, "pt", "and");
+// 'Homer, Marge, Lisa, Bart e Maggie'
+
+readableStringList(SIMPSONS, "pt", "or");
+// 'Homer, Marge, Lisa, Bart ou Maggie'
+```

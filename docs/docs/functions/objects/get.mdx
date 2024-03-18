@@ -1,0 +1,48 @@
+---
+title: get
+---
+Gets the property value at path of object. If the resolved value is undefined the defaultValue is used in its place.
+
+## API
+
+```typescript
+function get<TDefault = unknown>(value: any, path: string, defaultValue?: TDefault): TDefault | undefined;
+```
+
+### Usage
+
+```typescript
+import { get } from '@feedzai/js-utilities';
+
+const simpleObject = { a: { b: 2 } }
+const complexObject = { a: [{ bar: { c: 3 } }] }
+const falsyObject = { a: null, b: undefined, c: 0 }
+
+get(simpleObject, 'a.b')
+// => 2
+
+get(complexObject, 'a[0].bar.c')
+// => 3
+
+get(complexObject, ['a', '0', 'bar', 'c'])
+// => 2
+
+get(simpleObject, 'a.bar.c', 'default')
+// => 'default'
+
+get(complexObject, 'a.bar.c', 'default')
+// =>  'default'
+
+get(complexObject, null)
+// =>  undefined
+
+get(falsyObject, 'a', 'default')
+// =>  null
+
+get(falsyObject, 'b', 'default')
+// =>  undefined
+
+get(falsyObject, 'c', 'default')
+// =>  zero
+```
+

@@ -1,0 +1,29 @@
+---
+title: isEqual
+---
+Performs a deep comparison between two values to determine if they are equivalent.
+
+## API
+
+```typescript
+function isEqual<TType>(x: TType, y: TType): boolean;
+```
+
+### Usage
+
+```typescript
+import { has } from '@feedzai/js-utilities';
+
+isEqual(null, null)
+// => true
+
+isEqual([], [])
+// => true
+
+isEqual('hello', 'world')
+// => false
+
+isEqual(22, 'abc')
+// => false
+```
+

@@ -1,0 +1,25 @@
+---
+title: isArray
+---
+Checks if `value` is classified as an Array object.
+
+## API
+
+```typescript
+function isArray(value?: any): value is any[];
+```
+
+### Usage
+
+```typescript
+import { isArray } from '@feedzai/js-utilities';
+
+isArray([1, 2, 3])
+// true
+
+isArray(document.body.children)
+// false
+
+isArray('abc')
+// false
+```

@@ -1,0 +1,32 @@
+---
+title: uniq
+---
+Creates a duplicate-free version of an array, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
+
+### API
+
+```typescript
+function uniq<Source>(array: Source[]): Source[];
+```
+
+### Example
+
+```typescript
+import { uniq } from "@feedzai/js-utilities";
+
+const DATA = [
+	"Homer",
+	"Marge",
+	"Lisa",
+	"Bart",
+	"Maggie"
+];
+const DUPLICATED_ARRAY = [
+	...DATA,
+	...DATA,
+]
+
+const RESULT = uniq(DUPLICATED_ARRAY);
+
+console.log(RESULT) // ["Homer","Marge", "Lisa","Bart","Maggie"];
+```

@@ -1,0 +1,28 @@
+---
+title: makeCancelable
+---
+Wraps a native Promise and allows it to be cancelled.
+
+## API
+
+```typescript
+function makeCancelable<GenericPromiseValue = unknown>(promise: Promise<GenericPromiseValue>): MakeCancelablePromise<GenericPromiseValue>;
+```
+
+### Usage
+
+```tsx
+import { wait } from '@feedzai/js-utilities';
+
+// A Promise that resolves after 1 second
+const somePromise = wait(1000);
+
+// Can also be made cancellable by wrapping it
+const cancelable = makeCancelable(somePromise);
+
+// So that when we execute said wrapped promise...
+cancelable.promise.then(console.log).catch(({ isCanceled }) => console.error('isCanceled', isCanceled));
+
+// We can cancel it on demand
+cancelable.cancel();
+```

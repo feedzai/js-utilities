@@ -1,0 +1,43 @@
+---
+title: usePageVisibility
+---
+Detects when the user's page visibility changes.
+The Page Visibility API provides events you can watch for to know when a document becomes
+visible or hidden, as well as features to look at the current visibility state of the page.
+
+This is especially useful for saving resources and improving performance by letting
+a page avoid performing unnecessary tasks when the document isn't visible.
+
+This can happen when, for example:
+a) A site has an image carousel that shouldn't advance to the next slide unless the user is viewing the page.
+b) An application showing a dashboard of information doesn't want to poll the server for updates when the page isn't visible.
+c) A page wants to detect when it is being prerendered so it can keep accurate count of page views
+d) A site wants to switch off sounds when a device is in standby mode (user pushes power button to turn screen off)
+
+## API
+
+```typescript
+function usePageVisibility(handlerCallback: (isVisible: boolean) => void, delay?: number): void;
+```
+
+### Usage
+
+```tsx
+import { usePageVisibility } from '@feedzai/js-utilities';
+
+function App() {
+  // When the user changes tabs, save the written note draft
+  usePageVisibility((isVisible) => {
+    if (!isVisible) {
+      saveNoteDraft();
+    }
+  });
+
+ // Wait two seconds before saving the written note draft
+ usePageVisibility((isVisible) => {
+   if (!isVisible) {
+     saveNoteDraft();
+   }
+ }, 2000);
+}
+```

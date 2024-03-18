@@ -1,0 +1,29 @@
+---
+title: draw
+---
+Draw a random item from a list. Returns null if the list is empty.
+
+This helper can also be useful for using inside tests where - given a list of possible outcomes - one is randomly selected.
+
+## API
+
+```typescript
+function random(lower?: number, upper?: number | boolean, floating?: boolean): number;
+```
+
+### Usage
+
+```typescript
+import { draw } from '@feedzai/js-utilities';
+
+const SIMPSONS = [
+	"Homer Simpson",
+	"Marge Simpson",
+	"Bart Simpson",
+	"Lisa Simpson",
+	"Maggie Simpson",
+];
+
+draw(SIMPSONS)
+// => a random Simpsons Character e.g "Bart Simpson"
+```

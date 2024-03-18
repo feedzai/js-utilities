@@ -1,0 +1,27 @@
+---
+title: stripUnit
+---
+Shortens a given number to its shortest form so it can occupy little space as possible.
+
+## API
+
+```typescript
+function stripUnit(value: string | number): (string | number)[] | (string | undefined)[];
+```
+
+### Usage
+
+```typescript
+import { stripUnit } from '@feedzai/js-utilities';
+
+const THEME = {
+  "font-size-16": "1rem",
+  "font-size-20": "1.25rem",
+  "font-size-24": "1.5rem",
+  "font-size-32": "2rem",
+  "font-size-40": "2.5rem",
+};
+
+const RESULT = stripUnit(THEME["font-size-24"]);
+// [1.5, "rem"]
+```

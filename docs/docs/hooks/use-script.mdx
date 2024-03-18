@@ -1,0 +1,44 @@
+---
+title: useScript
+---
+A custom-hook to dynamically fetch an external script and know when it's loaded into the DOM
+
+## API
+
+```typescript
+function useScript(src: string, removeOnUnmount?: boolean | undefined, testId?: string): [boolean, boolean];
+```
+
+### Usage
+
+```tsx
+import { useScript } from '@feedzai/js-utilities';
+
+function Component({
+  removeOnUnmount = false,
+}: {
+  removeOnUnmount?: boolean;
+}): JSX.Element {
+  const [load, error] = useScript(
+    "https://code.jquery.com/jquery-3.7.1.min.js",
+    removeOnUnmount
+  );
+  const [version, setVersion] = useState("no version");
+
+  useEffect(() => {
+    if (typeof jQuery !== "undefined") {
+      const jqueryVersion = jQuery.fn.jquery;
+
+      setVersion(jqueryVersion);
+    }
+  }, [load]);
+
+  return (
+    <div>
+      <p data-testid="script-load">{`Has loaded? ${load}`}</p>
+      <p data-testid="script-error">{`Has error? ${error}`}</p>
+      <p data-testid="script-jquery-version">{version}</p>
+    </div>
+  );
+}
+```

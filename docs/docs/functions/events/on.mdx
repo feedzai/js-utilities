@@ -1,0 +1,42 @@
+---
+title: on
+---
+
+Adds an event listener for events with a specified type attribute value. The callback parameter defines the function to be executed when the event is dispatched.
+
+The options parameter specifies listener-specific settings. For compatibility, this can be a boolean. If true, it behaves as if the value were specified as options' capture.
+
+When options' capture is set to true, the callback won't be invoked during the BUBBLING_PHASE of the event's eventPhase attribute value. If false (or not provided), the callback won't be invoked during the CAPTURING_PHASE of the event's eventPhase attribute value. In either case, the callback will be invoked if the event's eventPhase attribute value is AT_TARGET.
+
+Setting options' passive to true indicates that the callback won't cancel the event by calling preventDefault().
+
+When options' once is set to true, the callback will only be invoked once, after which the event listener will be removed.
+
+If an AbortSignal is passed for options' signal, the event listener will be removed when the signal is aborted.
+
+The event listener is added to the target's event listener list and won't be appended if it already exists with the same type, callback, and capture.
+
+### API
+
+```typescript
+function on<T extends EventTarget>(
+  obj: T | null,
+  ...args:
+    | Parameters<T["addEventListener"]>
+    | [string, EventListenerOrEventListenerObject | CallableFunction, ...any]
+): void;
+```
+
+### Usage
+
+```typescript
+import { on } from "@feedzai/js-utilities";
+
+function callback(event) {
+  event.stopPropagation();
+}
+
+// Attach event to DOM element
+on(document.querySelector("h1"), "click", callback)
+
+```

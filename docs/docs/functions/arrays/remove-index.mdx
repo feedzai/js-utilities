@@ -1,0 +1,29 @@
+---
+title: removeIndex
+---
+
+Removes an item from an array by its index.
+
+### API
+
+```typescript
+function removeIndex<Source>(array: Source[], index: number): Source[];
+```
+
+### Usage
+
+```typescript
+import { removeIndex } from "@feedzai/js-utilities";
+
+const DATA = [
+	"Homer",
+	"Marge",
+	"Lisa",
+	"Bart",
+	"Maggie"
+];
+
+const SORTED = removeIndex(1);
+
+console.log(SORTED) // ["Homer","Lisa","Bart","Maggie"];
+```

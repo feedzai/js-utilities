@@ -1,0 +1,20 @@
+---
+title: uniqBy
+---
+
+This method is like `uniq` except that it accepts `iteratee` which is invoked for each element in `array` to generate the criterion by which uniqueness is computed. The order of result values is determined by the order they occur in the array. The iteratee is invoked with one argument: (value).
+
+### API
+
+```typescript
+function uniqBy<T>(arr: T[], iteratee: Iteratee<T>): T[];
+```
+
+### Usage
+
+```typescript
+import { uniqBy } from "@feedzai/js-utilities";
+
+uniqBy([2.1, 1.2, 2.3], Math.floor)
+// => [2.1, 1.2]
+```

@@ -28,6 +28,12 @@
     "test": "TZ=Europe/Lisbon cypress run --component",
     "posttest": "npx nyc report --reporter=text-summary",
     "bundle-size": "size-limit",
+    "all:test": "lerna run test",
+    "upgrade": "npx npm-check-updates --format=group --interactive",
+    "docs:install": "cd ./docs && npm install",
+    "docs:start": "cd ./docs && npm run start",
+    "docs:build": "cd ./docs && npm run build",
+    "docs:serve": "cd ./docs && npm run build && npm run serve",
     "reinstall": "rimraf node_modules && npm install"
   },
   "peerDependencies": {

@@ -1,0 +1,29 @@
+---
+title: useClickOutside
+---
+Detects when a click occurs outside a given HTMLElement (passed as React RefObject).
+
+It will take into consideration the third parameter that acts as an in-the-middle interceptor to execute
+the callback function.
+
+## API
+
+```typescript
+function useClickOutside<GenericElement extends Element = HTMLElement>(ref: React.Ref<GenericElement>, handler: <GenericEvent extends Event>(event?: GenericEvent | undefined) => void, isActive?: boolean): void;
+```
+
+### Usage
+
+```tsx
+import { useClickOutside } from '@feedzai/js-utilities';
+
+function App(props) {
+  const DROPDOWN_REF = useRef();
+
+  useClickOutside(
+    DROPDROWN_REF,
+    () => props.closeDropdown(),
+    props.shouldClose,
+  );
+}
+```

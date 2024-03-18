@@ -1,0 +1,38 @@
+---
+title: isDate
+---
+Determine if a value is a Date.
+Note: Does not check that the input date is valid, only that it is a Javascript Date type.
+
+## API
+
+```typescript
+function isDate(value: any): value is Date;
+```
+
+### Usage
+
+```typescript
+import { isDate } from '@feedzai/js-utilities';
+
+isDate(new Date()))
+//-> true
+
+isDate("2024-02-18")
+//-> false
+
+isDate(123))
+//-> false
+
+isDate([2024, 2, 18])
+//-> false
+
+isDate({ year: 2024, month: 2, day: 18 })
+//-> false
+
+isDate(null)
+//-> false
+
+isDate(undefined)
+//-> false
+```

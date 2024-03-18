@@ -1,0 +1,22 @@
+---
+title: isString
+---
+Checks if `value` is classified as a String primitive or object.
+
+## API
+
+```typescript
+function isString(value?: any): value is string;
+```
+
+### Usage
+
+```typescript
+import { isString } from '@feedzai/js-utilities';
+
+isString('abc')
+// true
+
+isString(1)
+// false
+```

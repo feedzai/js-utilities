@@ -1,0 +1,27 @@
+---
+title: usePrevious
+---
+React state hook that returns the previous state as described in the React hooks FAQ.
+
+## API
+
+```typescript
+function usePrevious<GenericType>(state: GenericType): GenericType | undefined;
+```
+
+### Usage
+
+```tsx
+import { usePrevious } from '@feedzai/js-utilities';
+
+function Component() {
+  const [value, setValue] = useState(0);
+  const previousValue = usePrevious(value);
+  return (
+    <div>
+      <span>{previousValue}</span>
+      <button onClick={() => setValue((prev) => prev + 1)}>Increment</button>
+    </div>
+  );
+}
+```

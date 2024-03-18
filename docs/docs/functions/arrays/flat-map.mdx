@@ -1,0 +1,19 @@
+---
+title: flatMap
+---
+Returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level.
+
+## API
+
+```typescript
+function flatMap<T>(arr: T[], callback: (value: T, index: number, array: T[]) => T[]): T[];
+```
+
+### Usage
+
+```typescript
+import { flatMap } from "@feedzai/js-utilities";
+
+flatMap([1, 2], n => [n, n])
+// => [1, 1, 2, 2]
+```

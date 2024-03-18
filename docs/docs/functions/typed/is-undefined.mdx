@@ -1,0 +1,22 @@
+---
+title: isUndefined
+---
+Checks if `value` is undefined.
+
+## API
+
+```typescript
+function isUndefined(value?: any): value is undefined;
+```
+
+### Usage
+
+```typescript
+import { isUndefined } from '@feedzai/js-utilities';
+
+isUndefined(undefined)
+// true
+
+isUndefined(null)
+// false
+```

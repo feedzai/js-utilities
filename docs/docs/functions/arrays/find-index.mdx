@@ -1,0 +1,28 @@
+---
+title: findIndex
+---
+This method is like find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
+
+## API
+
+```typescript
+function findIndex<T>(
+	arr: T[],
+	predicate: (value: T, index: number, obj: T[]) => unknown
+): number;
+```
+
+### Usage
+
+```typescript
+import { findIndex } from "@feedzai/js-utilities";
+
+const users = [
+ { user: 'barney', age: 36, active: true },
+ { user: 'fred', age: 40, active: false },
+ { user: 'pebbles', age: 1, active: true },
+]
+
+findIndex(users, o => o.age >= 40)
+
+```

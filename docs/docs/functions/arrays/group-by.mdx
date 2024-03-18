@@ -1,0 +1,24 @@
+---
+title: groupBy
+---
+Creates an object composed of keys generated from the results of running
+each element of `collection` through `iteratee`. The order of grouped values
+is determined by the order they occur in `collection`. The corresponding
+value of each key is an array of elements responsible for generating the
+key. The iteratee is invoked with one argument: (value).
+
+## API
+
+```typescript
+function groupBy<T, K>(collection: T[], iteratee: (element: T) => K): Record<string, T[]>;
+```
+
+### Usage
+
+```typescript
+import { groupBy } from "@feedzai/js-utilities";
+
+groupBy([6.1, 4.2, 6.3], Math.floor)
+// => { '4': [4.2], '6': [6.1, 6.3] }
+
+```

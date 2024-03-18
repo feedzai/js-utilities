@@ -1,0 +1,37 @@
+---
+title: isPlainObject
+---
+Checks if value is a plain object, that is, an object created by the Object constructor or one with a [[Prototype]] of null.
+
+## API
+
+```typescript
+function isPlainObject(value?: any): value is object;
+```
+
+### Usage
+
+```typescript
+import { isPlainObject } from '@feedzai/js-utilities';
+
+isPlainObject({});
+// true
+
+isPlainObject([]);
+// false
+
+isPlainObject(null);
+// false
+
+isPlainObject(new Date());
+// false
+
+isPlainObject('string');
+// false
+
+isPlainObject(123);
+// false
+
+isPlainObject(Object.create(null));
+// true
+```

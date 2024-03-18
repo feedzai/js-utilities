@@ -1,0 +1,28 @@
+---
+title: isNumber
+---
+Checks if `value` is classified as a Number primitive or object.
+
+## API
+
+```typescript
+function isNumber(value?: any): value is number;
+```
+
+### Usage
+
+```typescript
+import { isNumber } from '@feedzai/js-utilities';
+
+isNumber(3)
+// true
+
+isNumber(Number.MIN_VALUE)
+// true
+
+isNumber(Infinity)
+// true
+
+isNumber('3')
+// false
+```

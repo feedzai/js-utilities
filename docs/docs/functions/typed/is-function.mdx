@@ -1,0 +1,28 @@
+---
+title: isFunction
+---
+Checks if `value` is classified as a String primitive or object.
+
+## API
+
+```typescript
+function isFunction(value?: any): value is Function;
+```
+
+### Usage
+
+```typescript
+import { isFunction } from '@feedzai/js-utilities';
+
+isFunction(function () {})
+// true
+
+isFunction(() => {})
+// true
+
+isFunction(class NotAFunction {})
+// true
+
+isFunction(/abc/)
+// false
+```

@@ -1,0 +1,21 @@
+---
+title: useLifecycle
+---
+React lifecycle hook that calls mount and unmount callbacks, when component is mounted and un-mounted, respectively.
+
+## API
+
+```typescript
+function useLifecycle(mount: () => void, unmount?: () => void): void;
+```
+
+### Usage
+
+```tsx
+import { useLifecycle } from '@feedzai/js-utilities';
+
+useLifecycle(
+ () => console.log('runs on mount'),
+ () => console.log('runs on unmount'),
+);
+```

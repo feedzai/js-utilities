@@ -1,0 +1,30 @@
+---
+title: chunk
+---
+Creates an array of elements split into groups the length of size.
+If array can’t be split evenly, the final chunk will be the remaining elements.
+
+## API
+
+```typescript
+function chunk<T>(arr: T[], chunkSize: number = 1): T[][];
+```
+
+### Usage
+
+```typescript
+import { chunk } from "@feedzai/js-utilities";
+
+chunk(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+// => [['a'], ['b'], ['c'], ['d'], ['e'], ['f'], ['g']]
+
+chunk(['a', 'b', 'c', 'd', 'e', 'f', 'g'], 3)
+// => [['a', 'b', 'c'], ['d', 'e', 'f'], ['g']]
+
+chunk(['a', 'b', 'c', 'd', 'e', 'f', 'g'], 0)
+// => []
+
+chunk(['a', 'b', 'c', 'd', 'e', 'f', 'g'], -1)
+// => []
+
+```

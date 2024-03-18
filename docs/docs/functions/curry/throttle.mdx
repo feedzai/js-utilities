@@ -1,0 +1,36 @@
+---
+title: throttle
+---
+Given an interval and a function, returns a new function
+that will only call the source function if certain milliseconds
+have passed since the last invocation.
+
+
+## API
+
+```typescript
+type ThrottledFunction<TArgs extends any[]> = {
+  (...args: TArgs): void;
+  /**
+   * Checks if there is any invocation throttled
+   */
+  isThrottled(): boolean;
+};
+
+function throttle<TArgs extends any[]>(
+  { interval }: { interval: number },
+  func: (...args: TArgs) => any
+): ThrottledFunction<TArgs>;
+```
+
+### Usage
+
+```typescript
+import { throttle } from '@feedzai/js-utilities';
+
+const onMouseMove = () => {
+  rerender()
+}
+
+addEventListener('mousemove', throttle({ interval: 200 }, onMouseMove))
+```

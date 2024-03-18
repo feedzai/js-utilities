@@ -1,0 +1,37 @@
+---
+title: usePermission
+---
+Tracks a permission state. This hook is SSR-compatible and automatically updates on permission state change.
+
+## API
+
+```typescript
+type PermissionName = "geolocation" | "notifications" | "persistent-storage" | "push" | "screen-wake-lock" | "xr-spatial-tracking";
+
+function usePermission(descriptor: { name: PermissionName }): "denied" | "granted" | "prompt" | 'not-requested' | 'requested';
+```
+
+### Usage
+
+```tsx
+import { usePermission } from '@feedzai/js-utilities';
+
+function App() {
+  const status = usePermission({ name: 'notifications' });
+
+  return (
+    <div>
+      <p>
+        Notifications status: <code>{status}</code>
+      </p>
+      <div>
+        {status === 'prompt' ? (
+          <button onClick={() => Notification.requestPermission()}>
+            Request notifications permission
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+```

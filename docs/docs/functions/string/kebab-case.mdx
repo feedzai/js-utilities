@@ -1,0 +1,58 @@
+---
+title: kebabCase
+---
+Converts string to kebab case.
+
+## API
+
+```typescript
+function kebabCase(str: string): string;
+```
+
+### Usage
+
+```typescript
+import { random } from '@feedzai/js-utilities';
+
+kebabCase('Foo Bar')
+// => 'foo-bar'
+
+kebabCase('fooBar')
+// => 'foo-bar'
+
+kebabCase('__FOO_BAR__')
+// => 'foo-bar'
+
+kebabCase(null)
+// => ''
+
+kebabCase('UPPERCASE')
+// => 'uppercase'
+
+kebabCase(false)
+// => 'false'
+
+kebabCase(undefined)
+// => ''
+
+kebabCase(0)
+// => '0'
+
+kebabCase('camelCase')
+// => 'camel-case'
+
+kebabCase('?')
+// => ''
+
+kebabCase('Custom*XML*Parser')
+// => 'custom-xml-parser'
+
+kebabCase('APIFinder')
+// => 'api-finder'
+
+kebabCase('UserAPI20Endpoint')
+// => 'user-api-20-endpoint'
+
+kebabCase('30fghIJ')
+// => '30-fgh-ij'
+```

@@ -1,0 +1,31 @@
+---
+title: emitCustomEvent
+---
+
+Attaches data to a custom event.
+
+The react way of handling events is to pass callbacks to child components.
+This can become cumbersome when a child is several levels deep and one way to avoid passing callbacks deep is using Context.
+However, Context or Redux are not meant for all use cases.
+
+### API
+
+```typescript
+function emitCustomEvent<Source>(eventName: string, data?: Source): void;
+```
+
+### Usage
+
+```typescript
+import { emitCustomEvent } from "@feedzai/js-utilities";
+
+function ComponentA() {
+  const handleOnClick = useCallback((event) => {
+    emitCustomEvent("my-custom-event", { name: event.target.textContent });
+  }, []);
+
+  return (
+    <button type="button" onClick={handleOnClick}>Click Me</button>
+  );
+}
+```

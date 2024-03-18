@@ -1,0 +1,22 @@
+---
+title: isNull
+---
+Checks if `value` is null.
+
+## API
+
+```typescript
+function isNull(value?: any): value is null;
+```
+
+### Usage
+
+```typescript
+import { isNull } from '@feedzai/js-utilities';
+
+isNull(null)
+// true
+
+isNull(undefined)
+// false
+```

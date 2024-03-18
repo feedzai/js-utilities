@@ -1,0 +1,33 @@
+---
+title: getValue
+---
+Gets the value corresponding to the path of an object.
+
+If the object is required to have that path and the path does not exists, there are 2 possible outcomes:
+if a default value is provided, a warning is emitted indicating that value. If not, an error is emitted.
+
+If the object is not required to have that path, the default value (provided or undefined) is returned,
+without any warning.
+
+## API
+
+```typescript
+function getValue<GenericValue, GenericReturnValue>(object: GenericValue | IGetValueObject<GenericValue>, path: string, payload?: IGetValuePayload<GenericReturnValue> | undefined): GenericReturnValue | undefined;
+```
+
+### Usage
+
+```tsx
+import { getValue } from '@feedzai/js-utilities';
+
+const OBJ = {
+  a: {
+    b: {
+      c: 123,
+    },
+  },
+};
+
+const RESULT = getValue(OBJ, "a.b.d", { defaultValue: "default", required: true });
+// => "default"
+```

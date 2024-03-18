@@ -1,0 +1,22 @@
+---
+title: isElement
+---
+Checks if `value` is likely a DOM element.
+
+## API
+
+```typescript
+function isElement(value: any): value is Element;
+```
+
+### Usage
+
+```typescript
+import { isUndefined } from '@feedzai/js-utilities';
+
+isElement(document.body)
+// true
+
+isElement('<body>')
+// false
+```

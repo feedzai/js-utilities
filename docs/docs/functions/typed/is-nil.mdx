@@ -1,0 +1,25 @@
+---
+title: isNil
+---
+Checks if `value` is null or undefined.
+
+## API
+
+```typescript
+function isNil(value?: any): value is null | undefined;
+```
+
+### Usage
+
+```typescript
+import { isNil } from '@feedzai/js-utilities';
+
+isNil(null)
+// true
+
+isNil(undefined)
+// true
+
+isNil(NaN)
+// false
+```

@@ -1,0 +1,19 @@
+---
+title: includes
+---
+Checks if value is in collection. If collection is a string, it’s checked for a substring of value.
+
+## API
+
+```typescript
+function includes<T>(array: T[], value: any): boolean;
+```
+
+### Usage
+
+```typescript
+import { includes } from "@feedzai/js-utilities";
+
+includes([1, 2, 3], 1)
+// => true
+```

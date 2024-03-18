@@ -1,0 +1,40 @@
+---
+title: useContainerQuery
+---
+Measure an HTML element width using the Resize Observer API.
+
+It matches that value with the user's predefined breakpoint ranges and determines the containers size.
+
+The main purpose of this is to allow web developers to style DOM elements based on
+the size of a containing element rather than the size of the browser viewport.
+
+## API
+
+```typescript
+function useContainerQuery<GenericType extends HTMLElement>({ breakpoints, ignoreDimensions, observedMeasurement, }: ContainerQueryProps): ContainerQueryResult<GenericType>;
+```
+
+### Usage
+
+```tsx
+import { useContainerQuery } from '@feedzai/js-utilities';
+
+const BREAKPOINTS = {
+ "xs": [0, 960],
+ "sm": [961, 1200],
+ "md": [1201, 1440],
+ "lg": [1441, 1920],
+ "xl": [1921],
+};
+
+function App() {
+  const { ref, active, measurement: width } = useContainerQuery({ breakpoints });
+
+  return (
+     <div ref={ref}>
+         The current width is: {width}
+         This matches your breakpoint: {active}
+     </div>
+  );
+}
+```

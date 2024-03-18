@@ -1,0 +1,21 @@
+---
+title: at
+---
+Creates an array of values corresponding to paths of object.
+
+## API
+
+```typescript
+function at(object: any, paths: string | string[]): any[];
+```
+
+### Usage
+
+```typescript
+import { at } from '@feedzai/js-utilities';
+
+const object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+
+at(object, ['a[0].b.c', 'a[1]']);
+// [3, 4]
+```

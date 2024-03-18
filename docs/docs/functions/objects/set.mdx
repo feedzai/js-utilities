@@ -1,0 +1,28 @@
+---
+title: set
+---
+Sets the value at path of object.
+If a portion of path doesn’t exist, it’s created.
+Arrays are created for missing index properties while objects are created for all other missing properties
+
+## API
+
+```typescript
+function set<T extends object, K>(initial: T, path: string, value: K): T;
+```
+
+### Usage
+
+```typescript
+import { set } from '@feedzai/js-utilities';
+
+const object = { a: [{ bar: { c: 3 } }] }
+set(object, 'a[0].bar.c', 4)
+object.a[0].bar.c
+// => 4
+
+set(object, ['x', '0', 'y', 'z'], 5)
+object.x[0].y.z
+// => 5
+```
+

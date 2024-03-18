@@ -1,0 +1,20 @@
+---
+title: useLifecycle
+---
+Creates a `React.RefObject` that is constantly updated with the incoming value.
+
+## API
+
+```typescript
+function useLifecycle(mount: () => void, unmount?: () => void): void;
+```
+
+### Usage
+
+```tsx
+import { useLiveRef } from '@feedzai/js-utilities';
+
+function Component({ prop }) {
+  const PROP_REF = useLiveRef(prop);
+}
+```

@@ -1,0 +1,27 @@
+---
+title: clone
+---
+Creates a shallow copy of the given obejct/value.
+
+## API
+
+```typescript
+function clone<T>(obj: T): T;
+```
+
+### Usage
+
+```typescript
+import { clone } from '@feedzai/js-utilities';
+
+const CHARACTER = {
+  name: 'Bart',
+  age: 9
+}
+
+const simpsons = [CHARACTER]
+
+clone(CHARACTER) // => copy of CHARACTER
+clone(simpsons) // => copy of simpsons
+```
+

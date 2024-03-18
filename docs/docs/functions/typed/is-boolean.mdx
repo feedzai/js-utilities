@@ -1,0 +1,22 @@
+---
+title: isBoolean
+---
+Checks if `value` is classified as a boolean primitive or object.
+
+## API
+
+```typescript
+function isBoolean(value?: any): value is boolean;
+```
+
+### Usage
+
+```typescript
+import { isBoolean } from '@feedzai/js-utilities';
+
+isBoolean(false)
+// true
+
+isBoolean(null)
+// false
+```

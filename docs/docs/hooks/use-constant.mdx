@@ -1,0 +1,33 @@
+---
+title: useConstant
+---
+Executes a callback once and keeps its value for the rest of the component's lifetime.
+This is useful, for instance, for executing translations once and avoiding repetitive computations.
+
+## API
+
+```typescript
+function useConstant<FunctionReturnType>(fn: () => FunctionReturnType): FunctionReturnType;
+```
+
+### Usage
+
+```tsx
+import { useConstant, classNames } from '@feedzai/js-utilities';
+
+function App(props) {
+  const configs = useConstant(() => {
+      const hasIcon = !isEmpty(icon);
+      const iconClass = classNames("some-css-class", getIconClass(hasIcon, kind, icon));
+
+      return {
+          hasIcon,
+          iconClass,
+      };
+  });
+
+  return (
+    <p className={configs.iconClass}>{configs.hasIcon}</p>
+  );
+}
+```

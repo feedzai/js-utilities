@@ -1,0 +1,25 @@
+---
+title: camelCase
+---
+Formats the given string in camel case fashion
+
+## API
+
+```typescript
+function camelCase(str: string): string;
+```
+
+### Usage
+
+```typescript
+import { camelCase } from '@feedzai/js-utilities';
+
+camelCase('hello world')
+//-> 'helloWorld'
+
+camelCase('va va-VOOM')
+//-> 'vaVaVoom'
+
+camelCase('helloWorld')
+//-> 'helloWorld'
+```

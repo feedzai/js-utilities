@@ -1,0 +1,23 @@
+---
+title: useMount
+---
+React lifecycle hook that calls a function after the component is mounted.
+
+## API
+
+```typescript
+function useMount(callback: () => void): void;
+```
+
+### Usage
+
+```tsx
+import { useMount } from '@feedzai/js-utilities';
+
+// a div with multiple refs
+function Component() {
+  useMount(() => {
+    console.log("the component has mounted");
+  });
+}
+```

@@ -1,0 +1,28 @@
+---
+title: removeItem
+---
+Removes an item from a source array.
+
+### API
+
+```typescript
+function removeItem<Source>(array: Source[], item: Source): Source[];
+```
+
+### Usage
+
+```typescript
+import { removeItem } from "@feedzai/js-utilities";
+
+const DATA = [
+	"Homer",
+	"Marge",
+	"Lisa",
+	"Bart",
+	"Maggie"
+];
+
+const SORTED = removeItem("Marge");
+
+console.log(SORTED) // ["Homer","Lisa","Bart","Maggie"];
+```

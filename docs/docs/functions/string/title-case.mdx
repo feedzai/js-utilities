@@ -1,0 +1,28 @@
+---
+title: titleCase
+---
+Formats the given string in title case fashion
+
+## API
+
+```typescript
+function titleCase(str: string | null | undefined): string;
+```
+
+### Usage
+
+```typescript
+import { titleCase } from '@feedzai/js-utilities';
+
+titleCase('hello world')
+//-> 'Hello World'
+
+titleCase('va_va_boom')
+//-> 'Va Va Boom'
+
+titleCase('root-hook')
+//-> 'Root Hook'
+
+titleCase('queryItems')
+//-> 'Query Items'
+```

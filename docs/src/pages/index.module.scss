@@ -1,0 +1,158 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.page {
+  --color-black: #000f3a;
+  --color-background: #000000;
+  --color-white: #fafafb;
+  --color-primary: #73a3f5;
+  --color-primary-dark: #148636;
+  --color-alternate: #148636;
+  --color-link: rgba(167, 2, 106, 0.05);
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-wrap: break-word;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  color: var(--color-white);
+  background-color: var(--color-background);
+  background-attachment: fixed;
+  background-size: cover;
+  line-height: 1.45em;
+  font-family: "Work Sans", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-weight: 400;
+  display: grid;
+  grid-template-rows: 6rem 1fr;
+  grid-gap: 2rem;
+  min-height: 100vh;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
+  font-family: inherit;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.main {
+  padding: 3rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+  background-color: hsl(0, 0%, 10%);
+  border-radius: 1rem;
+}
+
+.list-item__link {
+  padding: 2rem;
+  color: var(--color-white);
+  border-radius: inherit;
+  width: 100%;
+}
+
+.list-item__title,
+.list-item__version,
+.list-item__description {
+  color: inherit;
+}
+
+.list-item__title {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.list-item__version {
+  display: inline-flex;
+  border-radius: 4px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: 0.25rem 0.5rem;
+}
+
+.list-item__description {
+  color: hsl(0, 0%, 70%);
+}
+
+@media all and (min-width: 40rem) {
+  .page {
+    grid-template-rows: 8rem 1fr;
+  }
+
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media all and (min-width: 64rem) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link:after {
+    transition: all 128ms ease-out;
+  }
+}
+
+:global {
+  .sr-only,
+  .visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    white-space: nowrap;
+  }
+}
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

@@ -1,0 +1,29 @@
+---
+title: isObject
+---
+Checks if `value` is the language type of `Object`.
+(e.g. arrays, functions, objects, regexes, new Number(0), and new String(’’))
+
+## API
+
+```typescript
+function isObject(value?: any): value is object;
+```
+
+### Usage
+
+```typescript
+import { isObject } from '@feedzai/js-utilities';
+
+isObject({})
+// true
+
+isObject([1, 2, 3])
+// true
+
+isObject(() => {})
+// true
+
+isObject(null)
+// false
+```

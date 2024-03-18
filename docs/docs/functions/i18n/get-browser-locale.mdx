@@ -1,0 +1,20 @@
+---
+title: getBrowserLocale
+---
+Returns the user's language, defined by its browser settings.
+
+### API
+
+```typescript
+function getBrowserLocale(): string;
+```
+
+### Usage
+
+```typescript
+import { getBrowserLocale } from "@feedzai/js-utilities";
+
+const LANGUAGE = getBrowserLocale();
+
+console.log(`Your language is ${LANGUAGE}`); // Your language is en-GB
+```

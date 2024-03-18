@@ -1,0 +1,26 @@
+---
+title: pick
+---
+Creates an object composed of the picked object properties.
+
+## API
+
+```typescript
+function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>;
+```
+
+### Usage
+
+```typescript
+import { pick } from '@feedzai/js-utilities';
+
+const object = {
+ a: 1,
+ b: 2,
+ c: 3,
+}
+
+pick(object, ['a', 'c'])
+// => {a: 1, c: 3}
+```
+

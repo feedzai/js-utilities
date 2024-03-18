@@ -1,0 +1,18 @@
+---
+title: throwError
+---
+Helper function to throw errors with the following string template "fileName.functionName:errorMsg".
+
+## API
+
+```typescript
+function throwError(fileName: string, functionName: string, errMsg: string): void;
+```
+
+### Usage
+
+```typescript
+import { throwError } from '@feedzai/js-utilities';
+
+throwError("js-utilities", "throwError", "This throws errors.");
+```

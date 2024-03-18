@@ -1,0 +1,23 @@
+---
+title: template
+---
+Template is used to replace data by name in template strings.
+The default expression looks for `{{name}}` to identify names.
+
+## API
+
+```typescript
+function template(str: string, data: Record<string, any>, regex?: RegExp): string;
+```
+
+### Usage
+
+```typescript
+import { titleCase } from '@feedzai/js-utilities';
+
+template('Hello, {{name}}', { name: 'ray' })
+//-> Hello, ray
+
+template('Hello, <name>', { name: 'ray' }, /<(.+?)>/g)
+//-> Hello, ray
+```

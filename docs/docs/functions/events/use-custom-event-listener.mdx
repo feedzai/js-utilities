@@ -1,0 +1,31 @@
+---
+title: useCustomEventListener
+---
+
+A custom React Hook that listens to a custom event and auto-cleans itself on unmount.
+
+### API
+
+```typescript
+function useCustomEventListener<GenericType>(eventName: string, eventHandler: EventHandler<GenericType>): void;
+```
+
+### Usage
+
+```typescript
+import { useCustomEventListener } from "@feedzai/js-utilities";
+
+function ComponentB() {
+  const [buttonText, setButtonText] = useState("");
+
+  useCustomEventListener("my-custom-event", (data) => {
+    setButtonText(data.name);
+  });
+
+  const TEXT = `The button text is: ${buttonText}`
+
+  return (
+   <p>{TEXT}</p>
+  );
+}
+```

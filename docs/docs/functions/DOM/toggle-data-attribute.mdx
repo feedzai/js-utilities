@@ -1,0 +1,25 @@
+---
+title: toggleDataAttribute
+---
+
+Adds a data attribute to a DOM element, without its state being rendered as a value
+
+### API
+
+```typescript
+function toggleDataAttribute(prop?: "true" | "false" | boolean | null): string | undefined;
+```
+
+### Usage
+
+```tsx
+import { toggleDataAttribute } from "@feedzai/js-utilities";
+
+// The React component
+const SOME_PROP = true;
+
+<Button data-is-boolean={toggleDataAttribute(SOME_PROP)}>Content</Button>
+
+// Renders as
+<button data-is-boolean>Content</button>
+```

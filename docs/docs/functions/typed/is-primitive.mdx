@@ -1,0 +1,54 @@
+---
+title: isPrimitive
+---
+Checks if the given value is primitive.
+Primitive Types:
+- number
+- string
+- boolean
+- symbol
+- bigint
+- undefined
+- null
+
+## API
+
+```typescript
+function isPrimitive(value: any): boolean;
+```
+
+### Usage
+
+```typescript
+import { isPrimitive } from '@feedzai/js-utilities';
+
+isPrimitive(undefined)
+// true
+
+isPrimitive(null)
+// true
+
+isPrimitive(123)
+// true
+
+isPrimitive("hello")
+// true
+
+isPrimitive(true)
+// true
+
+isPrimitive(Symbol())
+// true
+
+isPrimitive(BigInt(123))
+// true
+
+isPrimitive([1, 2, 3])
+// false
+
+isPrimitive({ key: "value" })
+// false
+
+isPrimitive(() => {})
+// false
+```

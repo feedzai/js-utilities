@@ -1,0 +1,21 @@
+---
+title: isBrowser
+---
+
+Checks whether the user is running the app on a browser or under another type of environment. (node, for example).
+
+### API
+
+```typescript
+const isBrowser: boolean;
+```
+
+### Usage
+
+```typescript
+import { isBrowser } from "@feedzai/js-utilities";
+
+if (isBrowser) {
+  const title = document.querySelector("h1");
+}
+```

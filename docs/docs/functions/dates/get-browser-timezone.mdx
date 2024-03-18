@@ -1,0 +1,21 @@
+---
+title: getBrowserTimezone
+---
+
+Returns the user's timezone, determined by its browser.
+
+### API
+
+```typescript
+function getBrowserTimezone(): string | undefined;
+```
+
+### Usage
+
+```typescript
+import { getBrowserTimezone } from "@feedzai/js-utilities";
+
+const MY_TIMEZONE = getBrowserTimezone();
+
+console.log(MY_TIMEZONE); // 'Europe/Lisbon'
+```

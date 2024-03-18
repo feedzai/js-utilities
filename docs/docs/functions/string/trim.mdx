@@ -1,0 +1,31 @@
+---
+title: trim
+---
+Trims all prefix and suffix characters from the given
+string. Like the builtin trim function but accepts
+other characters you would like to trim and trims
+multiple characters.
+
+## API
+
+```typescript
+function trim(str: string | null | undefined, charsToTrim?: string): string;
+```
+
+### Usage
+
+```typescript
+import { trim } from '@feedzai/js-utilities';
+
+trim('  hello ')
+// => 'hello'
+
+trim('__hello__', '_')
+// => 'hello'
+
+trim('/repos/:owner/:repo/', '/')
+// => 'repos/:owner/:repo'
+
+trim('222222__hello__1111111', '12_')
+// => 'hello'
+```

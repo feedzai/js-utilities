@@ -1,0 +1,31 @@
+---
+title: has
+---
+Checks if `path` is a direct property of `object`.
+
+## API
+
+```typescript
+function has(obj: ObjTypeWithAny, path: string | string[]): boolean;
+```
+
+### Usage
+
+```typescript
+import { has } from '@feedzai/js-utilities';
+
+const object = { a: { bar: 2 } }
+
+has(object, 'a')
+// => true
+
+has(object, 'a.bar')
+// => true
+
+has(object, ['a', 'bar'])
+// => true
+
+has(object, ['a', 'c'])
+// => false
+```
+

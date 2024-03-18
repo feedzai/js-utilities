@@ -1,0 +1,32 @@
+---
+title: debounce
+---
+Given a delay and a function returns a new function
+that will only call the source function after delay
+milliseconds have passed without any invocations.
+
+The debounce function comes with a `cancel` method
+to cancel delayed `func` invocations and a `flush`
+method to invoke them immediately
+
+
+## API
+
+```typescript
+function debounce<TArgs extends any[]>(
+  { delay }: { delay: number },
+  func: (...args: TArgs) => any
+);
+```
+
+### Usage
+
+```typescript
+import { debounce } from '@feedzai/js-utilities'
+
+const makeSearchRequest = (event) => {
+  api.movies.search(event.target.value)
+}
+
+input.addEventListener('change', debounce({ delay: 100 }, makeSearchRequest))
+```

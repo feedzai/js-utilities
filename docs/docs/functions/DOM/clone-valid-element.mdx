@@ -1,0 +1,24 @@
+---
+title: cloneValidElement
+---
+Type-safe clone element
+
+## API
+
+```typescript
+function cloneValidElement<Props>(element: ReactElement<Props> | ReactNode, props?: Partial<Props> & Attributes, ...children: ReactNode[]): ReactElement<Props> | ReactNode;
+```
+
+### Usage
+
+```tsx
+import { cloneValidElement } from '@feedzai/js-utilities';
+
+const clonedElement = cloneValidElement(
+  <Row title="Cabbage">
+    Hello
+  </Row>,
+  { isHighlighted: true },
+  'Goodbye'
+);
+```

@@ -1,0 +1,21 @@
+---
+title: omit
+---
+Creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
+
+## API
+
+```typescript
+function omit<T, TKeys extends keyof T>(obj: T, keys: TKeys[]): Omit<T, TKeys>;
+```
+
+### Usage
+
+```typescript
+import { omit } from '@feedzai/js-utilities';
+
+const object = { a: 1, b: '2', c: 3 };
+
+omit(object, ['a', 'c'])
+// => { 'b': '2' }
+```

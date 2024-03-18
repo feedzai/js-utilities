@@ -1,0 +1,29 @@
+---
+title: off
+---
+
+Removes the event listener in target's event listener list with the same type, callback, and options.
+
+### API
+
+```typescript
+function off<T extends EventTarget>(
+  obj: T | null,
+  ...args:
+    | Parameters<T["removeEventListener"]>
+    | [string, EventListenerOrEventListenerObject | CallableFunction, ...any]
+): void;
+```
+
+### Usage
+
+```typescript
+import { off } from "@feedzai/js-utilities";
+
+function callback(event) {
+  event.stopPropagation();
+}
+
+// Remove event from DOM element
+off(document.querySelector("h1"), "click", callback)
+```

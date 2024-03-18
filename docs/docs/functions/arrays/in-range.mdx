@@ -1,0 +1,39 @@
+---
+title: inRange
+---
+
+Checks if `n` is between `start` and up to, but not including, `end`.
+If `end` is not specified, it’s set to start with `start` then set to 0. If `start` is greater than `end` the params are swapped to support negative ranges.
+
+### API
+
+```typescript
+function inRange(num: number, rangeStart: number, rangeEnd = 0): boolean;
+```
+
+### Usage
+
+```typescript
+import { inRange } from "@feedzai/js-utilities";
+
+inRange(3, 2, 4)
+// => true
+
+inRange(4, 8)
+// => true
+
+inRange(4, 2)
+// => false
+
+inRange(2, 2)
+// => false
+
+inRange(1.2, 2)
+// => true
+
+inRange(5.2, 4)
+// => false
+
+inRange(-3, -2, -6)
+// => true
+```

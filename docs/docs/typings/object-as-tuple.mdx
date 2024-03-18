@@ -1,0 +1,26 @@
+---
+title: TupleToUnion
+---
+Use Object keys as a union type
+
+## API
+
+```typescript
+const tuple = <T extends string[]>(...args: T) => args;
+type TupleToUnion<T extends [...unknown[]]> = T[number];
+```
+
+### Usage
+
+```typescript
+import { tuple, TupleToUnion } from '@feedzai/js-utilities';
+
+export const ICON_POSITION = {
+ left: 'left',
+ right: 'right',
+} as const;
+
+const IconPositionTuple = tuple(Object.keys(ICON_POSITION)); // ["left", "right"]
+
+type IconPosition = TupleToUnion<typeof IconPositionTuple> // "left" | "right"
+```

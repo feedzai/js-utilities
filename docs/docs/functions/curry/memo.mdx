@@ -1,0 +1,27 @@
+---
+title: memo
+---
+Creates a memoized function. The returned function will only execute the source function when no value has previously been computed. If a ttl (milliseconds) is given previously computed values will be checked for expiration before being returned.
+
+
+## API
+
+```typescript
+function memo<TFunc extends (...args: any) => any>(func: TFunc, options?: {
+    key?: Func<any, string>;
+    ttl?: number;
+}): TFunc;
+```
+
+### Usage
+
+```typescript
+import { memo } from '@feedzai/js-utilities'
+
+const timestamp = memo(() => Date.now())
+
+const now = timestamp()
+const later = timestamp()
+
+now === later // => true
+```

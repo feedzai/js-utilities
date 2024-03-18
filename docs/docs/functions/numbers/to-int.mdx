@@ -1,0 +1,25 @@
+---
+title: toInt
+---
+Convert a value to an int if possible.
+
+## API
+
+```typescript
+function toInt<T extends number | null = number>(value: any, defaultValue?: T): number | T;
+```
+
+### Usage
+
+```typescript
+import { toInt } from '@feedzai/js-utilities';
+
+toInt("0")
+// => 0
+
+toInt(null)
+// => 0
+
+toInt(null, 3)
+// => 3
+```
