@@ -18,4 +18,5 @@ export * from "./use-network-state";
 export * from "./use-page-visibility";
 export * from "./use-permission";
 export * from "./use-previous";
+export * from "./use-safe-layout-effect";
 export * from "./use-script";
