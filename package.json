@@ -76,7 +76,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/feedzai/js-utilities.git"
+    "url": "git+https://github.com/feedzai/js-utilities.git"
   },
   "size-limit": [
     {
