@@ -7,24 +7,45 @@ title: Introduction
 [![CircleCI](https://github.com/feedzai/js-utilities/actions/workflows/pipeline.yaml/badge.svg?branch=main)](https://github.com/feedzai/js-utilities/actions/workflows/publish.yml)
 [![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/feedzai/js-utilities/blob/main/packages/js-utilities/package.json)
 
-## A Go-To JavaScript Toolkit
-
 In the vast landscape of JavaScript and TypeScript development, having a reliable set of tools at your disposal can make all the difference. Say hello to `@feedzai/js-utilities`, a comprehensive collection of JavaScript helpers, functions, and custom React hooks designed to streamline your projects with ease and efficiency.
-
-## Unleash the Power of Simplified Development
 
 With this package, developers gain access to a treasure trove of utilities carefully crafted to simplify common tasks encountered in JavaScript and TypeScript projects. From handy helpers to custom React hooks, this library empowers developers to write cleaner, more concise code without sacrificing functionality.
 
-## Tested, Documented, and Ready to Roll
+Each function and hook is tested to ensure functionality, effectiveness whilst giving developers the confidence to integrate them seamlessly into their projects. It comes with comprehensive documentation, making it a breeze to navigate and utilize its features effectively.
 
-The library doesn't just stop at providing essential utilities; it sets the gold standard for reliability. Each function and hook is meticulously tested to ensure flawless performance, giving developers the confidence to integrate them seamlessly into their projects. What's more, the library comes with comprehensive documentation, making it a breeze to navigate and utilize its features effectively.
+Whether you're working in a traditional environment or embracing the latest ES Modules, it has you covered. The package is available in both UMD and ES Modules formats, ensuring compatibility with a wide range of project setups.
 
-## Modern Solutions, Timeless Results
+No matter your development preferences, the package adapts to fit seamlessly into your workflow.
 
-Keeping up with modern JavaScript standards is crucial, and the package delivers on that front with finesse. Featuring a curated selection of lodash functions rewritten in modern ECMAScript syntax, this library stays ahead of the curve while offering solutions that stand the test of time.
+For JavaScript and TypeScript developers seeking a lightweight but robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` is the answer. Explore its extensive array of helpers, functions, and React hooks today, and discover a smoother, more efficient approach to web development.
 
-## Built for Every Developer, Everywhere
+## Installation
 
-Whether you're working in a traditional environment or embracing the latest ES Modules, it has you covered. It's available in both UMD and ES Modules formats, ensuring compatibility with a wide range of project setups. No matter your development preferences, the package adapts to fit seamlessly into your workflow.
+This module is distributed via [npm](https://www.npmjs.com/package/@feedzai/js-utilities) which is bundled with [node](https://nodejs.org/en) and
+should be installed as one of your project's `dependencies` or `devDependencies`:
 
-For JavaScript and TypeScript developers seeking a robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` is the answer. Explore its extensive array of helpers, functions, and React hooks today, and discover a smoother, more efficient approach to web development.
+```sh
+## using npm
+npm install --save-dev @feedzai/js-utilities
+
+## using yarn
+yarn add --dev @feedzai/js-utilities
+
+## using pnpm
+pnpm add -D @feedzai/js-utilities
+```
+
+## Usage
+
+This is a collection of functions, utilities and react hooks. You'll find all available code in `src`.
+
+The bundle is available as:
+
+- ES Modules
+- UMD (Universal Module Definition)
+
+To import a piece of code into your javascript project just do:
+
+```js
+import { callIfExists, throwError, getLSItem, useConstant } from "@feedzai/js-utilities";
+```
