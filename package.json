@@ -9,6 +9,13 @@
     "dist"
   ],
   "homepage": "https://github.com/feedzai/js-utilities",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feedzai/js-utilities.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.umd.cjs",
   "module": "dist/index.es.mjs",
   "types": "dist/types/index.d.ts",
@@ -73,10 +80,6 @@
     "vite-plugin-istanbul": "^6.0.0",
     "vite-tsconfig-paths": "^4.3.2",
     "vite": "^5.1.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/feedzai/js-utilities.git"
   },
   "size-limit": [
     {
