@@ -1,5 +1,4 @@
 {
-  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "allowJs": false,
