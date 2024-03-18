@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/feedzai/js-utilities/compare/v1.0.1...v1.1.0) (2024-03-18)
+
+
+### Features
+
+* **hooks:** adds useAutoId hook ([bdc9f17](https://github.com/feedzai/js-utilities/commit/bdc9f171b617043080de613a6e868ac9b0fd9ffc))
+* **hooks:** adds useSafeLayoutEffect hook ([ceb9093](https://github.com/feedzai/js-utilities/commit/ceb9093ad677cee83919dae9b30c42b8546a4048))
+
 ## [1.0.1](https://github.com/feedzai/js-utilities/compare/v1.0.0...v1.0.1) (2024-03-18)
 
 
