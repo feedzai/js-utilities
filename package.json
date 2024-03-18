@@ -23,6 +23,7 @@
     "build": "npm run types:check && vite build",
     "bundle-size": "size-limit",
     "docs:build": "cd ./docs && npm run build",
+    "docs:build-ci": "npm run docs:install && npm run docs:build",
     "docs:install": "cd ./docs && npm install",
     "docs:serve": "cd ./docs && npm run build && npm run serve",
     "docs:start-ci": "npm run docs:install && npm run docs:start",
