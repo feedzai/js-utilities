@@ -3,6 +3,7 @@
  *
  * (c) 2024 Feedzai
  */
+export * from "./use-auto-id";
 export * from "./use-click-outside";
 export * from "./use-constant";
 export * from "./use-container-query";

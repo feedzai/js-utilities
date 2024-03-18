@@ -7,6 +7,7 @@ export * from "./camel-case";
 export * from "./capitalize";
 export * from "./escape-reg-exp";
 export * from "./kebab-case";
+export * from "./make-id";
 export * from "./pascal-case";
 export * from "./readable-string-list";
 export * from "./strip-unit";
