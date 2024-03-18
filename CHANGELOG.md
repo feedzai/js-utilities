@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/feedzai/js-utilities/compare/v1.0.0...v1.0.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* **package:** fixed repository url protocol ([1d5eda2](https://github.com/feedzai/js-utilities/commit/1d5eda20b5951d3b9fc57b6830bbaa9a1f596ab3))
+
 # 1.0.0 (2024-03-18)
 
 
