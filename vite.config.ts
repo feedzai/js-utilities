@@ -12,6 +12,18 @@ import istanbul from "vite-plugin-istanbul";
 import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+type ModuleFormat =
+  | "amd"
+  | "cjs"
+  | "es"
+  | "iife"
+  | "system"
+  | "umd"
+  | "commonjs"
+  | "esm"
+  | "module"
+  | "systemjs";
+
 const BASE_EXTERNAL_LIBRARIES = {
   react: "React",
   "react-dom": "ReactDOM",
@@ -21,11 +33,28 @@ const BASE_EXTERNAL_LIBRARIES = {
 const ROLLUP_OPTIONS: RollupOptions = {
   external: [...Object.keys(BASE_EXTERNAL_LIBRARIES)],
   output: {
+    preserveModules: true,
+    inlineDynamicImports: false,
     globals: {
       ...BASE_EXTERNAL_LIBRARIES,
     },
   },
 };
+
+/**
+ * Gets a per-file format filename.
+ *
+ * @param format
+ * @returns
+ */
+function getFilename(format: ModuleFormat, entryName: string) {
+  const OUTPUT: Partial<Record<typeof format, string>> = {
+    es: `${entryName}.mjs`,
+    cjs: `${entryName}.cjs`,
+  };
+
+  return OUTPUT[format] ?? `${entryName}.cjs`;
+}
 
 const CONFIG: UserConfig = {
   plugins: [
@@ -35,8 +64,7 @@ const CONFIG: UserConfig = {
       requireEnv: false,
     }),
     dts({
-      outDir: "dist/types",
-      insertTypesEntry: true,
+      insertTypesEntry: false,
     }),
     tsconfigPaths(),
   ],
@@ -52,14 +80,12 @@ const CONFIG: UserConfig = {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "JSUtilities",
-      formats: ["es", "umd"],
-      fileName: (format) => {
-        const OUTPUT: Partial<Record<typeof format, string>> = {
-          es: "index.es.mjs",
-          umd: "index.umd.cjs",
-        };
-
-        return OUTPUT[format] ?? "cindex.js";
+      formats: ["es", "cjs"],
+      fileName: getFilename,
+    },
+    terserOptions: {
+      format: {
+        comments: false,
       },
     },
     rollupOptions: ROLLUP_OPTIONS,

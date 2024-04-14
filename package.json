@@ -3,6 +3,7 @@
   "description": "A collection of common javascript utilities for web projects",
   "private": false,
   "version": "1.1.0",
+  "sideEffects": false,
   "license": "AGPL-3.0-only",
   "type": "module",
   "files": [
@@ -16,16 +17,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.umd.cjs",
-  "module": "dist/index.es.mjs",
-  "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.mjs",
-      "require": "./dist/index.umd.cjs",
-      "types": "./dist/types/index.d.ts"
-    }
-  },
+  "main": "index.cjs",
+  "module": "index.mjs",
+  "types": "index.d.ts",
   "scripts": {
     "build": "npm run types:check && vite build",
     "bundle-size": "size-limit",
@@ -51,47 +45,47 @@
     "react-dom": ">= 16.14"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.12.29",
+    "@cypress/code-coverage": "^3.12.40",
     "@jtmdias/merge-coverage": "^1.1.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^12.0.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.2",
-    "@semantic-release/npm": "^12.0.0",
+    "@semantic-release/github": "^10.0.7",
+    "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^12.1.0",
-    "@size-limit/preset-small-lib": "^11.1.1",
-    "@testing-library/cypress": "^10.0.1",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react-swc": "^3.6.0",
-    "cypress": "^13.7.0",
+    "@size-limit/preset-small-lib": "^11.1.4",
+    "@testing-library/cypress": "^10.0.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "cypress": "^13.13.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.72.0",
-    "semantic-release": "^23.0.4",
-    "size-limit": "^11.1.1",
-    "typescript": "^5.4.2",
-    "vite-plugin-dts": "^3.7.3",
-    "vite-plugin-istanbul": "^6.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.77.6",
+    "semantic-release": "^23.0.8",
+    "size-limit": "^11.1.4",
+    "typescript": "^5.5.3",
+    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-istanbul": "^6.0.2",
     "vite-tsconfig-paths": "^4.3.2",
-    "vite": "^5.1.6"
+    "vite": "^5.3.3"
   },
   "size-limit": [
     {
-      "path": "dist/index.umd.cjs",
-      "limit": "10 kB",
+      "path": "dist/index.cjs",
+      "limit": "11 kB",
       "ignore": [
         "fs"
       ]
     },
     {
-      "path": "dist/index.es.mjs",
-      "limit": "10 kB",
+      "path": "dist/index.mjs",
+      "limit": "11 kB",
       "ignore": [
         "fs"
       ]
