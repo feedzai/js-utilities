@@ -54,5 +54,3 @@ export function useClickOutside<GenericElement extends Element = HTMLElement>(
     [ref, handler, isActive]
   );
 }
-
-export default useClickOutside;

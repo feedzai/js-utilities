@@ -4,11 +4,7 @@
  * (c) 2024 Feedzai
  */
 
-/**
- * Hypertext Transfer Protocol (HTTP) response status codes.
- * @see {@link https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
- */
-export const HTTP_STATUS_CODE = {
+interface HTTPStatusCodes {
   /**
    * The server has received the request headers and the client should proceed to send the request body
    * (in the case of a request for which a body needs to be sent; for example, a POST request).
@@ -16,19 +12,19 @@ export const HTTP_STATUS_CODE = {
    * To have a server check the request's headers, a client must send Expect: 100-continue as a header in its initial request
    * and receive a 100 Continue status code in response before sending the body. The response 417 Expectation Failed indicates the request should not be continued.
    */
-  CONTINUE: 100,
+  CONTINUE: number;
 
   /**
    * The requester has asked the server to switch protocols and the server has agreed to do so.
    */
-  SWITCHING_PROTOCOLS: 101,
+  SWITCHING_PROTOCOLS: number;
 
   /**
    * A WebDAV request may contain many sub-requests involving file operations, requiring a long time to complete the request.
    * This code indicates that the server has received and is processing the request, but no response is available yet.
    * This prevents the client from timing out and assuming the request was lost.
    */
-  PROCESSING: 102,
+  PROCESSING: number;
 
   /**
    * Standard response for successful HTTP requests.
@@ -36,73 +32,73 @@ export const HTTP_STATUS_CODE = {
    * In a GET request, the response will contain an entity corresponding to the requested resource.
    * In a POST request, the response will contain an entity describing or containing the result of the action.
    */
-  OK: 200,
+  OK: number;
 
   /**
    * The request has been fulfilled, resulting in the creation of a new resource.
    */
-  CREATED: 201,
+  CREATED: number;
 
   /**
    * The request has been accepted for processing, but the processing has not been completed.
    * The request might or might not be eventually acted upon, and may be disallowed when processing occurs.
    */
-  ACCEPTED: 202,
+  ACCEPTED: number;
 
   /**
    * SINCE HTTP/1.1
    * The server is a transforming proxy that received a 200 OK from its origin,
    * but is returning a modified version of the origin's response.
    */
-  NON_AUTHORITATIVE_INFORMATION: 203,
+  NON_AUTHORITATIVE_INFORMATION: number;
 
   /**
    * The server successfully processed the request and is not returning any content.
    */
-  NO_CONTENT: 204,
+  NO_CONTENT: number;
 
   /**
    * The server successfully processed the request, but is not returning any content.
    * Unlike a 204 response, this response requires that the requester reset the document view.
    */
-  RESET_CONTENT: 205,
+  RESET_CONTENT: number;
 
   /**
    * The server is delivering only part of the resource (byte serving) due to a range header sent by the client.
    * The range header is used by HTTP clients to enable resuming of interrupted downloads,
    * or split a download into multiple simultaneous streams.
    */
-  PARTIAL_CONTENT: 206,
+  PARTIAL_CONTENT: number;
 
   /**
    * The message body that follows is an XML message and can contain a number of separate response codes,
    * depending on how many sub-requests were made.
    */
-  MULTI_STATUS: 207,
+  MULTI_STATUS: number;
 
   /**
    * The members of a DAV binding have already been enumerated in a preceding part of the (multistatus) response,
    * and are not being included again.
    */
-  ALREADY_REPORTED: 208,
+  ALREADY_REPORTED: number;
 
   /**
    * The server has fulfilled a request for the resource,
    * and the response is a representation of the result of one or more instance-manipulations applied to the current instance.
    */
-  IM_USED: 226,
+  IM_USED: number;
 
   /**
    * Indicates multiple options for the resource from which the client may choose (via agent-driven content negotiation).
    * For example, this code could be used to present multiple video format options,
    * to list files with different filename extensions, or to suggest word-sense disambiguation.
    */
-  MULTIPLE_CHOICES: 300,
+  MULTIPLE_CHOICES: number;
 
   /**
    * This and all future requests should be directed to the given URI.
    */
-  MOVED_PERMANENTLY: 301,
+  MOVED_PERMANENTLY: number;
 
   /**
    * This is an example of industry practice contradicting the standard.
@@ -112,7 +108,7 @@ export const HTTP_STATUS_CODE = {
    * to distinguish between the two behaviours. However, some Web applications and frameworks
    * use the 302 status code as if it were the 303.
    */
-  FOUND: 302,
+  FOUND: number;
 
   /**
    * SINCE HTTP/1.1
@@ -120,25 +116,25 @@ export const HTTP_STATUS_CODE = {
    * When received in response to a POST (or PUT/DELETE), the client should presume that
    * the server has received the data and should issue a redirect with a separate GET message.
    */
-  SEE_OTHER: 303,
+  SEE_OTHER: number;
 
   /**
    * Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match.
    * In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy.
    */
-  NOT_MODIFIED: 304,
+  NOT_MODIFIED: number;
 
   /**
    * SINCE HTTP/1.1
    * The requested resource is available only through a proxy, the address for which is provided in the response.
    * Many HTTP clients (such as Mozilla and Internet Explorer) do not correctly handle responses with this status code, primarily for security reasons.
    */
-  USE_PROXY: 305,
+  USE_PROXY: number;
 
   /**
    * No longer used. Originally meant "Subsequent requests should use the specified proxy."
    */
-  SWITCH_PROXY: 306,
+  SWITCH_PROXY: number;
 
   /**
    * SINCE HTTP/1.1
@@ -146,20 +142,20 @@ export const HTTP_STATUS_CODE = {
    * In contrast to how 302 was historically implemented, the request method is not allowed to be changed when reissuing the original request.
    * For example, a POST request should be repeated using another POST request.
    */
-  TEMPORARY_REDIRECT: 307,
+  TEMPORARY_REDIRECT: number;
 
   /**
    * The request and all future requests should be repeated using another URI.
    * 307 and 308 parallel the behaviors of 302 and 301, but do not allow the HTTP method to change.
    * So, for example, submitting a form to a permanently redirected resource may continue smoothly.
    */
-  PERMANENT_REDIRECT: 308,
+  PERMANENT_REDIRECT: number;
 
   /**
    * The server cannot or will not process the request due to an apparent client error
    * (e.g., malformed request syntax, too large size, invalid request message framing, or deceptive request routing).
    */
-  BAD_REQUEST: 400,
+  BAD_REQUEST: number;
 
   /**
    * Similar to 403 Forbidden, but specifically for use when authentication is required and has failed or has not yet
@@ -167,55 +163,55 @@ export const HTTP_STATUS_CODE = {
    * requested resource. See Basic access authentication and Digest access authentication. 401 semantically means
    * "unauthenticated",i.e. the user does not have the necessary credentials.
    */
-  UNAUTHORIZED: 401,
+  UNAUTHORIZED: number;
 
   /**
    * Reserved for future use. The original intention was that this code might be used as part of some form of digital
    * cash or micro payment scheme, but that has not happened, and this code is not usually used.
    * Google Developers API uses this status if a particular developer has exceeded the daily limit on requests.
    */
-  PAYMENT_REQUIRED: 402,
+  PAYMENT_REQUIRED: number;
 
   /**
    * The request was valid, but the server is refusing action.
    * The user might not have the necessary permissions for a resource.
    */
-  FORBIDDEN: 403,
+  FORBIDDEN: number;
 
   /**
    * The requested resource could not be found but may be available in the future.
    * Subsequent requests by the client are permissible.
    */
-  NOT_FOUND: 404,
+  NOT_FOUND: number;
 
   /**
    * A request method is not supported for the requested resource;
    * for example, a GET request on a form that requires data to be presented via POST, or a PUT request on a read-only resource.
    */
-  METHOD_NOT_ALLOWED: 405,
+  METHOD_NOT_ALLOWED: number;
 
   /**
    * The requested resource is capable of generating only content not acceptable according to the Accept headers sent in the request.
    */
-  NOT_ACCEPTABLE: 406,
+  NOT_ACCEPTABLE: number;
 
   /**
    * The client must first authenticate itself with the proxy.
    */
-  PROXY_AUTHENTICATION_REQUIRED: 407,
+  PROXY_AUTHENTICATION_REQUIRED: number;
 
   /**
    * The server timed out waiting for the request.
    * According to HTTP specifications:
    * "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the request without modifications at any later time."
    */
-  REQUEST_TIMEOUT: 408,
+  REQUEST_TIMEOUT: number;
 
   /**
    * Indicates that the request could not be processed because of conflict in the request,
    * such as an edit conflict between multiple simultaneous updates.
    */
-  CONFLICT: 409,
+  CONFLICT: number;
 
   /**
    * Indicates that the resource requested is no longer available and will not be available again.
@@ -224,79 +220,79 @@ export const HTTP_STATUS_CODE = {
    * Clients such as search engines should remove the resource from their indices.
    * Most use cases do not require clients and search engines to purge the resource, and a "404 Not Found" may be used instead.
    */
-  GONE: 410,
+  GONE: number;
 
   /**
    * The request did not specify the length of its content, which is required by the requested resource.
    */
-  LENGTH_REQUIRED: 411,
+  LENGTH_REQUIRED: number;
 
   /**
    * The server does not meet one of the preconditions that the requester put on the request.
    */
-  PRECONDITION_FAILED: 412,
+  PRECONDITION_FAILED: number;
 
   /**
    * The request is larger than the server is willing or able to process. Previously called "Request Entity Too Large".
    */
-  PAYLOAD_TOO_LARGE: 413,
+  PAYLOAD_TOO_LARGE: number;
 
   /**
    * The URI provided was too long for the server to process. Often the result of too much data being encoded as a query-string of a GET request,
    * in which case it should be converted to a POST request.
    * Called "Request-URI Too Long" previously.
    */
-  URI_TOO_LONG: 414,
+  URI_TOO_LONG: number;
 
   /**
    * The request entity has a media type which the server or resource does not support.
    * For example, the client uploads an image as image/svg+xml, but the server requires that images use a different format.
    */
-  UNSUPPORTED_MEDIA_TYPE: 415,
+  UNSUPPORTED_MEDIA_TYPE: number;
 
   /**
    * The client has asked for a portion of the file (byte serving), but the server cannot supply that portion.
    * For example, if the client asked for a part of the file that lies beyond the end of the file.
    * Called "Requested Range Not Satisfiable" previously.
    */
-  RANGE_NOT_SATISFIABLE: 416,
+  RANGE_NOT_SATISFIABLE: number;
 
   /**
    * The server cannot meet the requirements of the Expect request-header field.
    */
-  EXPECTATION_FAILED: 417,
+  EXPECTATION_FAILED: number;
 
   /**
    * This code was defined in 1998 as one of the traditional IETF April Fools' jokes, in RFC 2324, Hyper Text Coffee Pot Control Protocol,
    * and is not expected to be implemented by actual HTTP servers. The RFC specifies this code should be returned by
    * teapots requested to brew coffee. This HTTP status is used as an Easter egg in some websites, including Google.com.
    */
-  I_AM_A_TEAPOT: 418,
+  I_AM_A_TEAPOT: number;
 
   /**
    * The request was directed at a server that is not able to produce a response (for example because a connection reuse).
    */
-  MISDIRECTED_REQUEST: 421,
+  MISDIRECTED_REQUEST: number;
 
   /**
    * The request was well-formed but was unable to be followed due to semantic errors.
    */
-  UNPROCESSABLE_ENTITY: 422,
+  UNPROCESSABLE_ENTITY: number;
 
   /**
    * The resource that is being accessed is locked.
    */
-  LOCKED: 423,
+  LOCKED: number;
 
   /**
    * The request failed due to failure of a previous request (e.g., a PROPPATCH).
    */
-  FAILED_DEPENDENCY: 424,
+  FAILED_DEPENDENCY: number;
 
   /**
    * The client should switch to a different protocol such as TLS/1.0, given in the Upgrade header field.
    */
-  UPGRADE_REQUIRED: 426,
+  UPGRADE_REQUIRED: number;
 
   /**
    * The origin server requires the request to be conditional.
@@ -304,81 +300,149 @@ export const HTTP_STATUS_CODE = {
    * GETs a resource's state, modifies it, and PUTs it back to the server,
    * when meanwhile a third party has modified the state on the server, leading to a conflict."
    */
-  PRECONDITION_REQUIRED: 428,
+  PRECONDITION_REQUIRED: number;
 
   /**
    * The user has sent too many requests in a given amount of time. Intended for use with rate-limiting schemes.
    */
-  TOO_MANY_REQUESTS: 429,
+  TOO_MANY_REQUESTS: number;
 
   /**
    * The server is unwilling to process the request because either an individual header field,
    * or all the header fields collectively, are too large.
    */
-  REQUEST_HEADER_FIELDS_TOO_LARGE: 431,
+  REQUEST_HEADER_FIELDS_TOO_LARGE: number;
 
   /**
    * A server operator has received a legal demand to deny access to a resource or to a set of resources
    * that includes the requested resource. The code 451 was chosen as a reference to the novel Fahrenheit 451.
    */
-  UNAVAILABLE_FOR_LEGAL_REASONS: 451,
+  UNAVAILABLE_FOR_LEGAL_REASONS: number;
 
   /**
    * A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
    */
-  INTERNAL_SERVER_ERROR: 500,
+  INTERNAL_SERVER_ERROR: number;
 
   /**
    * The server either does not recognize the request method, or it lacks the ability to fulfill the request.
    * Usually this implies future availability (e.g., a new feature of a web-service API).
    */
-  NOT_IMPLEMENTED: 501,
+  NOT_IMPLEMENTED: number;
 
   /**
    * The server was acting as a gateway or proxy and received an invalid response from the upstream server.
    */
-  BAD_GATEWAY: 502,
+  BAD_GATEWAY: number;
 
   /**
    * The server is currently unavailable (because it is overloaded or down for maintenance).
    * Generally, this is a temporary state.
    */
-  SERVICE_UNAVAILABLE: 503,
+  SERVICE_UNAVAILABLE: number;
 
   /**
    * The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
    */
-  GATEWAY_TIMEOUT: 504,
+  GATEWAY_TIMEOUT: number;
 
   /**
    * The server does not support the HTTP protocol version used in the request
    */
-  HTTP_VERSION_NOT_SUPPORTED: 505,
+  HTTP_VERSION_NOT_SUPPORTED: number;
 
   /**
    * Transparent content negotiation for the request results in a circular reference.
    */
-  VARIANT_ALSO_NEGOTIATES: 506,
+  VARIANT_ALSO_NEGOTIATES: number;
 
   /**
    * The server is unable to store the representation needed to complete the request.
    */
-  INSUFFICIENT_STORAGE: 507,
+  INSUFFICIENT_STORAGE: number;
 
   /**
    * The server detected an infinite loop while processing the request.
    */
-  LOOP_DETECTED: 508,
+  LOOP_DETECTED: number;
 
   /**
    * Further extensions to the request are required for the server to fulfill it.
    */
-  NOT_EXTENDED: 510,
+  NOT_EXTENDED: number;
 
   /**
    * The client needs to authenticate to gain network access.
    * Intended for use by intercepting proxies used to control access to the network (e.g., "captive portals" used
    * to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot).
    */
+  NETWORK_AUTHENTICATION_REQUIRED: number;
+}
+
+/**
+ * Hypertext Transfer Protocol (HTTP) response status codes.
+ * @see {@link https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
+ */
+export const HTTP_STATUS_CODE: HTTPStatusCodes = {
+  CONTINUE: 100,
+  SWITCHING_PROTOCOLS: 101,
+  PROCESSING: 102,
+  OK: 200,
+  CREATED: 201,
+  ACCEPTED: 202,
+  NON_AUTHORITATIVE_INFORMATION: 203,
+  NO_CONTENT: 204,
+  RESET_CONTENT: 205,
+  PARTIAL_CONTENT: 206,
+  MULTI_STATUS: 207,
+  ALREADY_REPORTED: 208,
+  IM_USED: 226,
+  MULTIPLE_CHOICES: 300,
+  MOVED_PERMANENTLY: 301,
+  FOUND: 302,
+  SEE_OTHER: 303,
+  NOT_MODIFIED: 304,
+  USE_PROXY: 305,
+  SWITCH_PROXY: 306,
+  TEMPORARY_REDIRECT: 307,
+  PERMANENT_REDIRECT: 308,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  PAYMENT_REQUIRED: 402,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  METHOD_NOT_ALLOWED: 405,
+  NOT_ACCEPTABLE: 406,
+  PROXY_AUTHENTICATION_REQUIRED: 407,
+  REQUEST_TIMEOUT: 408,
+  CONFLICT: 409,
+  GONE: 410,
+  LENGTH_REQUIRED: 411,
+  PRECONDITION_FAILED: 412,
+  PAYLOAD_TOO_LARGE: 413,
+  URI_TOO_LONG: 414,
+  UNSUPPORTED_MEDIA_TYPE: 415,
+  RANGE_NOT_SATISFIABLE: 416,
+  EXPECTATION_FAILED: 417,
+  I_AM_A_TEAPOT: 418,
+  MISDIRECTED_REQUEST: 421,
+  UNPROCESSABLE_ENTITY: 422,
+  LOCKED: 423,
+  FAILED_DEPENDENCY: 424,
+  UPGRADE_REQUIRED: 426,
+  PRECONDITION_REQUIRED: 428,
+  TOO_MANY_REQUESTS: 429,
+  REQUEST_HEADER_FIELDS_TOO_LARGE: 431,
+  UNAVAILABLE_FOR_LEGAL_REASONS: 451,
+  INTERNAL_SERVER_ERROR: 500,
+  NOT_IMPLEMENTED: 501,
+  BAD_GATEWAY: 502,
+  SERVICE_UNAVAILABLE: 503,
+  GATEWAY_TIMEOUT: 504,
+  HTTP_VERSION_NOT_SUPPORTED: 505,
+  VARIANT_ALSO_NEGOTIATES: 506,
+  INSUFFICIENT_STORAGE: 507,
+  LOOP_DETECTED: 508,
+  NOT_EXTENDED: 510,
   NETWORK_AUTHENTICATION_REQUIRED: 511,
 } as const;
