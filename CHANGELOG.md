@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/feedzai/js-utilities/compare/v1.1.0...v1.2.0) (2024-07-05)
+
+
+### Features
+
+* improved types on lodash helpers ([534a577](https://github.com/feedzai/js-utilities/commit/534a577cfd5a33afc14ab3bb603ecd4ceac272a5))
+* **vite:** changed config to support preserving modules ([a753eee](https://github.com/feedzai/js-utilities/commit/a753eee4cdc33181bee26db4b6f56709de5f67b3))
+
 # [1.1.0](https://github.com/feedzai/js-utilities/compare/v1.0.1...v1.1.0) (2024-03-18)
 
 
