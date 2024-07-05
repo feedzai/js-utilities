@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/feedzai/js-utilities/compare/v1.2.0...v1.2.1) (2024-07-05)
+
+
+### Bug Fixes
+
+* **package.json:** fixed paths on main, module and types ([2c0db7a](https://github.com/feedzai/js-utilities/commit/2c0db7a6259aa459ba268a9bec1a88981de754ab))
+
 # [1.2.0](https://github.com/feedzai/js-utilities/compare/v1.1.0...v1.2.0) (2024-07-05)
 
 
