@@ -15,6 +15,6 @@
  * isUndefined(null)
  * // false
  */
-export function isUndefined(value?: any): value is undefined {
-  return value === undefined;
+export function isUndefined(value: unknown): value is undefined {
+  return value === void 0;
 }

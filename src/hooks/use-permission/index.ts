@@ -44,22 +44,18 @@ export function usePermission(descriptor: PermissionDescriptor): UsePermissionSt
 
     setState("requested");
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises,promise/catch-or-return
-    navigator.permissions
-      .query(descriptor)
-      // eslint-disable-next-line promise/always-return
-      .then((status): void => {
-        const handleChange = () => {
-          setState(status.state);
-        };
-
+    navigator.permissions.query(descriptor).then((status): void => {
+      const handleChange = () => {
         setState(status.state);
-        on(status, "change", handleChange, { passive: true });
+      };
 
-        unmount.current = () => {
-          off(status, "change", handleChange);
-        };
-      });
+      setState(status.state);
+      on(status, "change", handleChange, { passive: true });
+
+      unmount.current = () => {
+        off(status, "change", handleChange);
+      };
+    });
 
     return () => {
       if (unmount.current) {

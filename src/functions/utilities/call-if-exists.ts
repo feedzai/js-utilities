@@ -5,26 +5,29 @@
  */
 
 /**
- * Executes the given callback function, if present.
+ * Executes the given callback function, if it exists.
+ *
+ * @param callback - The function to be executed if it exists
+ * @param args - Arguments to be passed to the callback
  *
  * @example
- *
  * // Calling a function with several arguments
- * callIfExists(functionName, arg1, arg2);
+ * callIfExists((a: number, b: string) => console.log(a, b), 1, "test");
  *
  * // Calling a function without any argument
- * callIfExists(functionName);
+ * callIfExists(() => console.log("Hello"));
  *
- * @param {Function|undefined} callback Holds the callback to be executed.
- * @param {any[]} args Holds a list of arguments to be passed to the callback.
- * @returns {void}
+ * // Nothing happens if the callback is not a function
+ * callIfExists(undefined);
+ * callIfExists(null);
+ * callIfExists("not a function");
  */
-export function callIfExists<GenericFunctionType>(
-  callback: GenericFunctionType,
-  ...args: any[]
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function callIfExists<T extends (...args: any[]) => any>(
+  callback: T | undefined | null,
+  ...args: Parameters<T>
 ): void {
   if (typeof callback === "function") {
-    // eslint-disable-next-line prefer-spread
-    callback.apply(undefined, args);
+    callback(...args);
   }
 }

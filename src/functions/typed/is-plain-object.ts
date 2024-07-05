@@ -3,36 +3,26 @@
  *
  * (c) 2024 Feedzai
  */
-import { isNil } from ".";
 
 /**
  * Checks if value is a plain object, that is, an object created by the Object constructor or one with a [[Prototype]] of null.
  *
+ * @param value - The value to check
+ * @returns True if the value is a plain object, false otherwise
+ *
  * @example
- *
- * isPlainObject({});
- * // true
- *
- * isPlainObject([]);
- * // false
- *
- * isPlainObject(null);
- * // false
- *
- * isPlainObject(new Date());
- * // false
- *
- * isPlainObject('string');
- * // false
- *
- * isPlainObject(123);
- * // false
- *
- * isPlainObject(Object.create(null));
- * // true
+ * isPlainObject({})                 // true
+ * isPlainObject(Object.create(null)) // true
+ * isPlainObject([])                 // false
+ * isPlainObject(null)               // false
+ * isPlainObject(undefined)          // false
+ * isPlainObject(new Date())         // false
+ * isPlainObject('string')           // false
+ * isPlainObject(123)                // false
+ * isPlainObject(function(){})       // false
  */
-export function isPlainObject(value?: any): value is object {
-  if (isNil(value)) {
+export function isPlainObject(value: unknown): value is Record<string, unknown> {
+  if (typeof value !== "object" || value === null) {
     return false;
   }
 
