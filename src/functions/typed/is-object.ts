@@ -24,10 +24,11 @@ import { isNil } from ".";
  * isObject(null)
  * // false
  */
-export function isObject(value?: any): value is object {
+export function isObject(value: unknown): value is object {
   if (isNil(value)) {
     return false;
   }
 
-  return value.constructor === Object;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (value as any).constructor === Object;
 }

@@ -24,6 +24,27 @@
  * isEmpty({a: '1'})
  * // false
  */
-export function isEmpty(value?: any): boolean {
-  return [Object, Array].includes((value || {}).constructor) && !Object.entries(value || {}).length;
+export function isEmpty(value: unknown): boolean {
+  // Check for null or undefined
+  if (value == null) {
+    return true;
+  }
+
+  // Check for empty string or array
+  if (typeof value === "string" || Array.isArray(value)) {
+    return value.length === 0;
+  }
+
+  // Check for empty Map or Set
+  if (value instanceof Map || value instanceof Set) {
+    return value.size === 0;
+  }
+
+  // Check for empty object
+  if (typeof value === "object") {
+    return Object.keys(value as object).length === 0;
+  }
+
+  // All other values are considered non-empty
+  return false;
 }

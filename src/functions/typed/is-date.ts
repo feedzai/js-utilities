@@ -9,6 +9,6 @@
  *
  * Note: Does not check that the input date is valid, only that it is a Javascript Date type.
  */
-export function isDate(value: any): value is Date {
-  return Object.prototype.toString.call(value) === "[object Date]";
+export function isDate(value: unknown): value is Date {
+  return value instanceof Date || Object.prototype.toString.call(value) === "[object Date]";
 }

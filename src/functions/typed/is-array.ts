@@ -18,6 +18,6 @@
  * isArray('abc')
  * // false
  */
-export function isArray(value?: any): value is Array<any> {
+export function isArray(value: unknown): value is Array<unknown> {
   return Array.isArray(value);
 }

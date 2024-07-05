@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
