@@ -25,13 +25,13 @@ should be installed as one of your project's `dependencies` or `devDependencies`
 
 ```sh
 ## using npm
-npm install --save-dev @feedzai/js-utilities
+npm install @feedzai/js-utilities
 
 ## using yarn
-yarn add --dev @feedzai/js-utilities
+yarn add @feedzai/js-utilities
 
 ## using pnpm
-pnpm add -D @feedzai/js-utilities
+pnpm add @feedzai/js-utilities
 ```
 
 ## Usage
@@ -47,13 +47,16 @@ To import a piece of code into your javascript project just do:
 
 ```js
 // Just one function
-import { throwError } from "@feedzai/js-utilities";
+import { isNil } from "@feedzai/js-utilities";
 
 // Just a single module, with the full path to the file
 import isNil from "@feedzai/js-utilities/dist/functions/typed/is-nil";
 
 // Multiple functions
-import { callIfExists, throwError, getLSItem, useConstant } from "@feedzai/js-utilities";
+import { callIfExists, throwError, getLSItem } from "@feedzai/js-utilities";
+
+// React Hooks
+import { useMount, useConstant } from "@feedzai/js-utilities/hooks";
 
 // Alias the whole object
 import * as JS_UTILS from "@feedzai/js-utilities";
