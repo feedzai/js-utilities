@@ -4,19 +4,24 @@
  *
  * (c) 2024 Feedzai, Rights Reserved.
  */
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useSafeLayoutEffect } from ".";
-import { makeId } from "..";
+import React, { useMemo, useRef, useState } from "react";
+import { useMount, useSafeLayoutEffect } from ".";
+import { isFunction, makeId } from "..";
 
 let hasHydrated = false;
 let id = 0;
+
+// Check if React.useId is available
+const HAS_USE_ID_HOOK = isFunction(React.useId);
 
 /**
  * Returns an incremented id number
  *
  * @returns {number}
  */
-const generateIncrementalId = () => ++id;
+function generateIncrementalId() {
+  return ++id;
+}
 
 /**
  * Generate automatic IDs to facilitate WAI-ARIA
@@ -46,40 +51,48 @@ const generateIncrementalId = () => ++id;
  */
 function useAutoId(customId?: string | null, prefix?: string): string | undefined {
   const { current: idPrefix } = useRef(prefix);
-  const initialId = customId || (hasHydrated ? generateIncrementalId() : null);
-  const [id, setId] = useState(initialId);
+
+  // Use React's `useId` hook if available
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const REACT_GENERATED_ID = HAS_USE_ID_HOOK && !customId ? React.useId?.() : null;
+  const INITIAL_ID = customId ?? (hasHydrated ? generateIncrementalId() : null);
+
+  const [generatedId, setGeneratedId] = useState(INITIAL_ID);
+
+  // Use the react generated id if available, otherwise use internally generated id
+  const BASE_ID = REACT_GENERATED_ID || generatedId;
 
   /*
    * Patch the ID after render to avoid any rendering flicker.
    */
   useSafeLayoutEffect(() => {
-    if (id === null) {
-      setId(generateIncrementalId());
+    if (generatedId === null) {
+      setGeneratedId(generateIncrementalId());
     }
   }, []);
 
   /*
    * Flag all future uses of `useAutoId` to skip the updating cycle.
-   * We use `useEffect` because it happens after `useLayoutEffect`.
+   * We use `useMount` (useEffect underneath) because it happens after `useLayoutEffect`.
    * This way we make sure that we complete the patch process until the end.
    */
-  useEffect(() => {
+  useMount(() => {
     if (hasHydrated === false) {
       hasHydrated = true;
     }
-  }, []);
+  });
 
   const finalId = useMemo(() => {
-    if (!id) {
+    if (!BASE_ID) {
       return undefined;
     }
 
-    const finalId = String(id);
+    const STRING_ID = String(BASE_ID);
 
-    return idPrefix ? makeId(idPrefix, finalId) : finalId;
-  }, [id, idPrefix]);
+    // Always use makeId to combine prefix and id, even when using React's useId
+    return idPrefix ? makeId(idPrefix, STRING_ID) : STRING_ID;
+  }, [BASE_ID, idPrefix]);
 
   return finalId;
 }
-
 export { useAutoId };

@@ -5,7 +5,7 @@
  */
 
 /**
- * Checks if `value` is classified as a String primitive or object.
+ * Checks if `value` is classified as a Function object.
  *
  * @example
  * isFunction(function() {})  // true
@@ -15,6 +15,7 @@
  * isFunction(null)           // false
  * isFunction(undefined)      // false
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function isFunction(value: unknown): value is Function {
   return typeof value === "function";
 }
