@@ -3,5 +3,4 @@
  *
  * (c) 2024 Feedzai
  */
-export * from "./functions";
-export * from "./typings";
+export * from "./hooks/index";

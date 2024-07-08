@@ -14,7 +14,7 @@ function usePermission(descriptor: { name: PermissionName }): "denied" | "grante
 ### Usage
 
 ```tsx
-import { usePermission } from '@feedzai/js-utilities';
+import { usePermission } from '@feedzai/js-utilities/hooks';
 
 function App() {
   const status = usePermission({ name: 'notifications' });

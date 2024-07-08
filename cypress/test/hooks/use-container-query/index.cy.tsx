@@ -3,11 +3,11 @@
  *
  * (c) 2024 Feedzai
  */
-import { useContainerQuery } from "../../../../src/hooks";
+import { useContainerQuery } from "src/hooks";
 import type {
   ContainerQueryMeasurement,
   QueryBreakpoints,
-} from "../../../../src/hooks/useContainerQuery/types";
+} from "src/hooks/use-container-query/types";
 import "./styles.scss";
 
 const CUSTOM_BREAKPOINTS: QueryBreakpoints = {

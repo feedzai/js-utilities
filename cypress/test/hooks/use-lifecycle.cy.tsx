@@ -3,7 +3,8 @@
  *
  * (c) 2024 Feedzai
  */
-import { emptyFunction, useLifecycle } from "src/index";
+import { emptyFunction } from "src/index";
+import { useLifecycle } from "src/hooks";
 
 interface DemoWithHookProps {
   onMount: VoidFunction;

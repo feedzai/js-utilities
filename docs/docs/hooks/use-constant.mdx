@@ -13,7 +13,9 @@ function useConstant<FunctionReturnType>(fn: () => FunctionReturnType): Function
 ### Usage
 
 ```tsx
-import { useConstant, classNames } from '@feedzai/js-utilities';
+import { classNames } from '@feedzai/js-utilities';
+import { useConstant } from '@feedzai/js-utilities/hooks';
+
 
 function App(props) {
   const configs = useConstant(() => {

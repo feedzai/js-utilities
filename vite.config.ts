@@ -78,7 +78,10 @@ const CONFIG: UserConfig = {
   },
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        hooks: resolve(__dirname, "src/hooks.ts"),
+      },
       name: "JSUtilities",
       formats: ["es", "cjs"],
       fileName: getFilename,

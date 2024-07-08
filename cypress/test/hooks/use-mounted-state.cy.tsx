@@ -4,7 +4,8 @@
  * (c) 2024 Feedzai
  */
 import { useEffect, useState } from "react";
-import { useMountedState, wait } from "src/index";
+import { useMountedState } from "src/hooks";
+import { wait } from "src/index";
 
 interface DemoWithHookProps {
   onMountedStateChange?: (state: boolean) => void;
