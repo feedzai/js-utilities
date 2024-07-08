@@ -32,6 +32,13 @@
       "require": "./dist/hooks.cjs"
     }
   },
+  "typesVersions": {
+    "*": {
+      "hooks": [
+        "./dist/hooks.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "npm run types:check && vite build",
     "bundle-size": "size-limit",
