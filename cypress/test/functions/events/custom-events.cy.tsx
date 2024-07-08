@@ -3,7 +3,8 @@
  *
  * (c) 2024 Feedzai
  */
-import { EventHandler, emitCustomEvent, useCustomEventListener } from "src/functions";
+import { EventHandler, emitCustomEvent } from "src/functions";
+import { useCustomEventListener } from "src/hooks";
 
 interface ELCProps<GenericType> {
   eventName: string;

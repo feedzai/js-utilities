@@ -4,3 +4,4 @@
  * (c) 2024 Feedzai
  */
 export * from "./hooks/index";
+export * from "./functions/events/custom-events/use-custom-event-listener";

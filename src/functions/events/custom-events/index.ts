@@ -4,6 +4,5 @@
  *
  * (c) 2024 Feedzai
  */
-export * from "./use-custom-event-listener";
 export * from "./emit-custom-event";
 export * from "./types";
