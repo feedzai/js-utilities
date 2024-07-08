@@ -2,7 +2,7 @@
   "name": "@feedzai/js-utilities",
   "description": "A collection of common javascript utilities for web projects",
   "private": false,
-  "version": "1.3.0",
+  "version": "1.4.0",
   "sideEffects": false,
   "license": "AGPL-3.0-only",
   "type": "module",

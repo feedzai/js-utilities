@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/feedzai/js-utilities/compare/v1.3.0...v1.4.0) (2024-07-08)
+
+
+### Features
+
+* **useAutoId:** Add support for react 18 useId hook ([c15a2ba](https://github.com/feedzai/js-utilities/commit/c15a2ba6fa3b863776e7b8ac7c9c959bf05e1082))
+
 # [1.3.0](https://github.com/feedzai/js-utilities/compare/v1.2.1...v1.3.0) (2024-07-08)
 
 
