@@ -17,9 +17,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.cjs",
-  "module": "./index.mjs",
-  "types": "./index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "npm run types:check && vite build",
     "bundle-size": "size-limit",
