@@ -1,0 +1,31 @@
+---
+title: useAutoId
+---
+Generate automatic IDs to facilitate WAI-ARIA.
+
+The returned ID will initially be `null` and will update after a component mounts.
+Users may need to supply their own ID if they need consistent values for SSR.
+
+## API
+
+```typescript
+function useAutoId(customId?: string | null, prefix?: string): string | undefined;
+```
+
+### Usage
+
+```tsx
+import { useAutoId } from '@feedzai/js-utilities/hooks';
+
+ // Generating an id (no pre-defined id and no prefix)
+ const id1 = useAutoId(); // will return, for example, "0" (or :r0: if on React 18+)
+
+ // Using a pre-defined id (no prefix)
+ const id2 = useAutoId("8e88aa2e-e6a8") // will return "8e88aa2e-e6a8"
+
+ // Using a prefix with an auto-generated id (no pre-defined id)
+ const id3 = useAutoId(undefined, "fdz-prefix") // will return, for example, "fdz-prefix--10"
+
+ // Using a prefix with a pre-defined id
+ const id4 = useAutoId("6949d175", "fdz-js-checkbox") // will return "fdz-js-checkbox--6949d175"
+```
