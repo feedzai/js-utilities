@@ -12,6 +12,18 @@ import { SetState } from "./types";
  * Check if a component is controlled or uncontrolled and returns the correct
  * state value and setter accordingly. If the component state is controlled by
  * the app, the setter is an empty function.
+ *
+ * @example
+ * ```tsx
+ * import { useControlledState } from '@feedzai/js-utilities/hooks';
+ * ...
+ * function Tabs(props) {
+ *  // The selected index can be defined by the Tabs internal state or a parent.
+ *  const [selectedIndex, setSelectedIndex] = useControlledState(
+ *    props.defaultIndex ?? DEFAULT_INITIAL_TAB_INDEX,
+ *    props.controlledIndex,
+ *  );
+ * ```
  */
 export function useControlledState<StateType>(
   defaultState: StateType | (() => StateType),

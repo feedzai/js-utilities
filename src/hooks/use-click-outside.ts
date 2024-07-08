@@ -13,11 +13,15 @@ import React, { useEffect } from "react";
  * the callback function.
  *
  * @example
+ * ```tsx
+ * import { useClickOutside } from '@feedzai/js-utilities/hooks';
+ * ...
  * useClickOutside(
-    DROPDROWN_REF,
-    () => closeDropdown(),
-    shouldClose,
-   );
+ *  DROPDROWN_REF,
+ *  () => closeDropdown(),
+ *  shouldClose,
+ * );
+ * ```
  */
 export function useClickOutside<GenericElement extends Element = HTMLElement>(
   ref: React.Ref<GenericElement>,
@@ -27,7 +31,7 @@ export function useClickOutside<GenericElement extends Element = HTMLElement>(
   useEffect(
     () => {
       const listener = <GenericEvent extends Event>(event: GenericEvent) => {
-        // @ts-ignore Do nothing if clicking ref's element or descendent elements
+        // @ts-expect-error Do nothing if clicking ref's element or descendent elements
         if (isNil(ref) || isNil(ref["current"]) || ref["current"].contains(event.target)) {
           return;
         }

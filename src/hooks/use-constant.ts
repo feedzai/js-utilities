@@ -12,6 +12,9 @@ import { useRef } from "react";
  * See {@link https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily this FAQ on React's own homepage}
  *
  * @example
+ * ```tsx
+ * import { useConstant } from '@feedzai/js-utilities/hooks';
+ * ...
  * // Calling the translateText function once
  * const messages = useConstant(() => {
  *  return {
@@ -22,9 +25,13 @@ import { useRef } from "react";
  *
  * // Consuming its unmodified value later on
  * <p>{messages.description}</p>
+ * ```
  *
  * @example
- *  const configs = useConstant(() => {
+ * ```tsx
+ * import { useConstant } from '@feedzai/js-utilities/hooks';
+ * ...
+ * const configs = useConstant(() => {
  *      const hasIcon = !isEmpty(icon);
  *      const iconClass = classNames("some-css-class", getIconClass(hasIcon, kind, icon));
  *
@@ -36,6 +43,7 @@ import { useRef } from "react";
  *
  * // Consuming its unmodified value later on
  * <p>{configs.hasIcon}</p>
+ * ```
  */
 export function useConstant<FunctionReturnType>(fn: () => FunctionReturnType): FunctionReturnType {
   const ref = useRef<{ instance: FunctionReturnType }>();

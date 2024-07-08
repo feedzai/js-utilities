@@ -44,11 +44,20 @@ export function mergeRefs<Generic = HTMLElement>(
 }
 
 /**
- * Returns a function that receives the element and assign the value to the given React refs.
+ * The useMergeRefs hook is designed to combine multiple React refs into a single callback ref.
+ *
+ * This is particularly useful when you need to apply multiple refs to a single element, such as when working with
+ * both internal component logic and external ref forwarding. By merging refs, you can maintain the functionality of
+ * each individual ref while avoiding conflicts or overrides that might occur when attempting to assign multiple
+ * refs directly.
+ *
+ * This hook enhances component flexibility and reusability, allowing developers to easily integrate both
+ * component-specific refs and externally provided refs in a clean, efficient manner.
  *
  * @example
- *
- * ```
+ * ```tsx
+ * import { useMergeRefs } from '@feedzai/js-utilities/hooks';
+ * ...
  * // a div with multiple refs
  * function Example({ ref, ...props }) {
  *   const internalRef = React.useRef();

@@ -14,8 +14,11 @@ const cachedScripts: string[] = [];
  * and know when it's loaded into the DOM
  *
  * @example
- *
+ * ```tsx
+ * import { useSafeLayoutEffect } from '@feedzai/js-utilities/hooks';
+ * ...
  * const [loaded, error] = useScript("")
+ * ```
  */
 export function useScript(
   src: string,
@@ -98,7 +101,7 @@ export function useScript(
         };
       }
     },
-    [src, removeOnUnmount] // Only re-run effect if script src changes
+    [src, removeOnUnmount, testId] // Only re-run effect if script src changes
   );
 
   return [state.loaded, state.error];

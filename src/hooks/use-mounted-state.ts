@@ -11,7 +11,7 @@ import { useCallback, useEffect, useRef } from "react";
  *
  * @example
  * ```
- * import { useMountedState } from "@feedzai/js-utilities";
+ * import { useMountedState } from "@feedzai/js-utilities/hooks";
  * ...
  * const isMounted = useMountedState();
  *

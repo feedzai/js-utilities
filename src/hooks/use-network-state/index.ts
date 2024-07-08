@@ -36,6 +36,9 @@ function getConnectionState(previousState?: UseNetworkState): UseNetworkState {
  * Tracks the state of browser's network connection.
  *
  * @example
+ * ```tsx
+ * import { useNetworkState } from '@feedzai/js-utilities/hooks';
+ * ...
  * const onlineState = useNetworkState();
  *
  * return (
@@ -44,6 +47,7 @@ function getConnectionState(previousState?: UseNetworkState): UseNetworkState {
  *    <pre>{JSON.stringify(onlineState, null, 2)}</pre>
  *  </div>
  * );
+ * ```
  */
 export function useNetworkState(initialState?: UseNetworkState): UseNetworkState {
   const [state, setState] = useState(initialState ?? getConnectionState);

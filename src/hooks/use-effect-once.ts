@@ -11,8 +11,8 @@ import { EffectCallback, useEffect } from "react";
  * Runs an effect only once.
  *
  * @example
- * ```
- * import {useEffectOnce} from '@feedzai/js-utilities';
+ * ```tsx
+ * import {useEffectOnce} from '@feedzai/js-utilities/hooks';
  *
  * useEffectOnce(() => {
  *   console.log('This runs only one time, when mounting');

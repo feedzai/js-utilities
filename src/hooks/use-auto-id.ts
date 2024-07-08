@@ -30,10 +30,14 @@ function generateIncrementalId() {
  * component mounts. Users may need to supply their own ID if they need
  * consistent values for SSR.
  *
- * @example
+ * Note: The id generating mechanism uses `useId` under the hook, if on React 18+.
  *
+ * @example
+ * ```tsx
+ * import { useAutoId } from '@feedzai/js-utilities/hooks';
+ * ...
  * // Generating an id (no pre-defined id and no prefix)
- * const id1 = useAutoId(); // will return, for example, "0"
+ * const id1 = useAutoId(); // will return, for example,  "0" (or :r0: if on React 18+)
  *
  * // Using a pre-defined id (no prefix)
  * const id2 = useAutoId("8e88aa2e-e6a8") // will return "8e88aa2e-e6a8"
@@ -43,7 +47,7 @@ function generateIncrementalId() {
  *
  * // Using a prefix with a pre-defined id
  * const id4 = useAutoId("6949d175", "fdz-js-checkbox") // will return "fdz-js-checkbox--6949d175"
- *
+ *``
  * @param {string | null | undefined} customId - You can pass an previously defined value
  * and that value will be used as the value of the returned id.
  * @param {string | undefined} prefix - If necessary, you can prepend a generated id with a prefix.

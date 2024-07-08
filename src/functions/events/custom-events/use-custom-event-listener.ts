@@ -11,9 +11,13 @@ import { getElement } from "./get-element";
  * A custom hook that listens to a custom event and auto-cleans itself on unmount.
  *
  * @example
+ * ```tsx
+ * import { useCustomEventListener } from "@feedzai/js-utilities/hooks";
+ * ...
  * useCustomEventListener('a-custom-event-name', data => {
  * 	doSomethingWithData( data );
  * });
+ * ```
  */
 export function useCustomEventListener<GenericType>(
   eventName: string,

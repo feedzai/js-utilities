@@ -32,12 +32,12 @@ function writeToClipboard(value: string) {
  * Copy text to a user's clipboard.
  *
  * @example
- * ```
- * import { useCopyToClipboard } from "@feedzai/js-utilities";
+ * ```tsx
+ * import { useCopyToClipboard } from "@feedzai/js-utilities/hooks";
  * ...
  * function Demo() {
  *  const [text, setText] = useState('');
- *  const { value, error, copyToClipboard } = useCopyToClipboard();
+ *  const { value, error, copyToClipboard } = useCopyToClipboard();
  *
  *  return (
  *    <div>

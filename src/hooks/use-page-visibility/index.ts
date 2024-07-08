@@ -23,6 +23,9 @@ import { PageVisibilityCallback } from "./types";
  * d) A site wants to switch off sounds when a device is in standby mode (user pushes power button to turn screen off)
  *
  * @example
+ * ```tsx
+ * import { usePageVisibility } from '@feedzai/js-utilities/hooks';
+ * ...
  *  // When the user changes tabs, save the written note draft
  *  usePageVisibility((isVisible) => {
  *    if (!isVisible) {
@@ -36,9 +39,7 @@ import { PageVisibilityCallback } from "./types";
  *      saveNoteDraft();
  *    }
  *  }, 2000);
- *
- * @param {PageVisibilityCallback} handlerCallback Callback function to run when page visibility changes. A boolean value (indicating whether the page is visible or not) will be passed as an argument to this function.
- * @param {number} [delay] Number of milliseconds to wait before responding to page visibility change
+ * ```
  */
 export function usePageVisibility(handlerCallback: PageVisibilityCallback, delay?: number): void {
   const { current: BROWSER_COMPATIBILITY } = useRef(getBrowserCompatibility());

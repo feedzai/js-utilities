@@ -10,8 +10,8 @@ import { isFunction } from "../index";
  * React lifecycle hook that calls mount and unmount callbacks, when component is mounted and un-mounted, respectively.
  *
  * @example
- * ```
- * import { useLifecycle } from "@feedzai/js-utilities";
+ * ```tsx
+ * import { useLifecycle } from "@feedzai/js-utilities/hooks";
  * ...
  * useLifecycle(
  *  () => console.log('runs on mount'),

@@ -23,7 +23,9 @@ import {
  * the size of a containing element rather than the size of the browser viewport.
  *
  * @example
- *
+ * ```jsx
+ * import { useContainerQuery } from "@feedzai/js-utilities/hooks";
+ * ...
  * const BREAKPOINTS = {
  *  "xs": [0, 960],
  *  "sm": [961, 1200],
@@ -42,7 +44,7 @@ import {
  *      </div>
  *   );
  * }
- *
+ * ```
  */
 export function useContainerQuery<GenericType extends HTMLElement>({
   breakpoints = DEFAULT_BREAKPOINTS,

@@ -13,26 +13,22 @@ import { UsePermissionState } from "./types";
  * - Automatically updates on permission state change.
  *
  * @example
+ * ```tsx
+ * import { usePermission } from '@feedzai/js-utilities/hooks';
+ * ...
  * const status = usePermission({ name: 'notifications' });
-
-  return (
-    <div>
-      <div>
-        Notifications status: <code>{status}</code>
-      </div>
-      <div>
-        {status === 'prompt' && (
-          <button
-            onClick={() => {
-
-              Notification.requestPermission();
-            }}>
-            Request notifications permission
-          </button>
-        )}
-      </div>
-    </div>
-  );
+ *
+ * return (
+ *  <>
+ *   <p>Notifications status: <code>{status}</code></p>
+ *   {status === 'prompt' && (
+ *     <button type="button" onClick={() => Notification.requestPermission()}>
+ *       Request notifications permission
+ *     </button>
+ *   )}
+ *  </>
+ * );
+ * ```
  *
  * @param descriptor Permission request descriptor that passed to `navigator.permissions.query`
  */

@@ -10,7 +10,7 @@ import { useEffectOnce } from "./use-effect-once";
  *
  * @example
  * ```
- * import { useMount } from "@feedzai/js-utilities";
+ * import { useMount } from "@feedzai/js-utilities/hooks";
  * ...
  * useMount(() => {
  *  console.log("the component has mounted");
