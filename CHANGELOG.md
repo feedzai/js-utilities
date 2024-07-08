@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/feedzai/js-utilities/compare/v1.4.0...v1.4.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* **package.json:** added typesVersions entry ([8ff1649](https://github.com/feedzai/js-utilities/commit/8ff164963c9d3acaf830fe36d39c10fcdfad52ad))
+
 # [1.4.0](https://github.com/feedzai/js-utilities/compare/v1.3.0...v1.4.0) (2024-07-08)
 
 
