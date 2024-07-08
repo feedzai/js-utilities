@@ -108,6 +108,20 @@
       "ignore": [
         "fs"
       ]
+    },
+    {
+      "path": "dist/hooks.cjs",
+      "limit": "11 kB",
+      "ignore": [
+        "fs"
+      ]
+    },
+    {
+      "path": "dist/hooks.mjs",
+      "limit": "11 kB",
+      "ignore": [
+        "fs"
+      ]
     }
   ]
 }
