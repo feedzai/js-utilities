@@ -147,7 +147,7 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 
 | Name      | Source                                                                                                |
 | --------- | ----------------------------------------------------------------------------------------------------- |
-| isBrowser | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/browers/is-browser.ts)       |
+| isBrowser | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/browsers/is-browser.ts)      |
 | DEV       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/constants/is-development.ts) |
 
 ### Curry
@@ -266,7 +266,7 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 | useCopyToClipboard  | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-copy-to-clipboard.ts)  |
 | useEffectOnce       | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-effect-once.ts)        |
 | useLifecycle        | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-lifecycle.ts)          |
-| useLiveRef          | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-life-ref.ts)           |
+| useLiveRef          | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-live-ref.ts)           |
 | useMergeRefs        | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-merge-refs.ts)         |
 | useMount            | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-mount.ts)              |
 | useMountedState     | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-mounted-state.ts)      |
