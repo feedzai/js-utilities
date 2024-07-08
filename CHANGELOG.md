@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/feedzai/js-utilities/compare/v1.4.1...v1.4.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **useCustomEventListener:** changed import path from functions to hooks ([fc216cb](https://github.com/feedzai/js-utilities/commit/fc216cb1bbdaaba9c4e9802a1934acd5865a164e))
+
 ## [1.4.1](https://github.com/feedzai/js-utilities/compare/v1.4.0...v1.4.1) (2024-07-08)
 
 
