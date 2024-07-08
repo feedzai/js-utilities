@@ -126,22 +126,22 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 
 ### Arrays
 
-| Name        | Source                                                                                          |
-| ----------- | ----------------------------------------------------------------------------------------------- |
-| arrayMove   | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/array-move.ts)   |
-| chunk       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/chunk.ts)        |
-| findIndex   | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/find-index.ts)   |
-| find        | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/find.ts)         |
-| flatMap     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/flat-map.ts)     |
-| flatten     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/flatten.ts)      |
-| groupBy     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/group-by.ts)     |
-| inRange     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/in-range.ts)     |
-| includes    | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/includes.ts)     |
-| merge       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/merge.ts)        |
-| removeIndex | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/remove-index.ts) |
-| removeItem  | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/remove-item.ts)  |
-| uniqBy      | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/uniq-by.ts)      |
-| uniq        | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/uniq.ts)         |
+| Name        | Source                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| arrayMove   | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/array-move.ts)  |
+| chunk       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/chunk.ts)       |
+| findIndex   | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/find-index.ts)  |
+| find        | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/find.ts)        |
+| flatMap     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/flat-map.ts)    |
+| flatten     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/flatten.ts)     |
+| groupBy     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/group-by.ts)    |
+| inRange     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/in-range.ts)    |
+| includes    | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/includes.ts)    |
+| merge       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/merge.ts)       |
+| removeIndex | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/removeIndex.ts) |
+| removeItem  | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/removeItem.ts)  |
+| uniqBy      | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/uniq-by.ts)     |
+| uniq        | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/array/uniq.ts)        |
 
 ### Browsers
 
@@ -152,11 +152,11 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 
 ### Curry
 
-| Name     | Source                                                                                      |
-| -------- | ------------------------------------------------------------------------------------------- |
-| debounce | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/debounce.ts) |
-| memo     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/memo.ts)     |
-| throttle | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/throttle.ts) |
+| Name     | Source                                                                                       |
+| -------- | -------------------------------------------------------------------------------------------- |
+| debounce | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/debounce.ts)  |
+| memo     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/memo.ts)      |
+| throttle | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/curry/throttled.ts) |
 
 ### Dates
 
@@ -215,7 +215,7 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 | readableStringList | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/readable-string-list.ts) |
 | stripUnit          | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/strip-unit.ts)           |
 | template           | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/template.ts)             |
-| titleCase          | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/title.ts)                |
+| titleCase          | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/title-case.ts)           |
 | trim               | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/string/trim.ts)                 |
 
 ### Typed
