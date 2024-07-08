@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/feedzai/js-utilities/compare/v1.2.1...v1.3.0) (2024-07-08)
+
+
+### Bug Fixes
+
+* **package.json:** wrong main, module and types folders ([4f23207](https://github.com/feedzai/js-utilities/commit/4f23207b68462cfb6de00c2bb5ccf17d70f17e3b))
+
+
+### Features
+
+* **bundle:** split between pure javascript and react modules ([48c9778](https://github.com/feedzai/js-utilities/commit/48c9778a429c806ba542ed429d8103e3360ae403))
+
 ## [1.2.1](https://github.com/feedzai/js-utilities/compare/v1.2.0...v1.2.1) (2024-07-05)
 
 
