@@ -1,5 +1,5 @@
 ---
-title: useLifecycle
+title: useLiveRef
 ---
 Creates a `React.RefObject` that is constantly updated with the incoming value.
 
@@ -12,7 +12,7 @@ This technique is especially beneficial when working with hooks like useEffect. 
 ## API
 
 ```typescript
-function useLifecycle(mount: () => void, unmount?: () => void): void;
+function useLiveRef<T>(value: T): MutableRefObject<T>;
 ```
 
 ### Usage
