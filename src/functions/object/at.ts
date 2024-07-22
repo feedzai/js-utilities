@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
@@ -5,6 +6,7 @@
  */
 import { get } from "./get";
 import { flatten } from "../array";
+import { isNull } from "../typed";
 
 /**
  * Creates an array of values corresponding to paths of object.
@@ -19,10 +21,9 @@ import { flatten } from "../array";
 export function at(object: any, paths: string | string[]): any[] {
   const PATHS = Array.isArray(paths) ? paths : [paths];
   const FLATTENED_PATHS = flatten(PATHS, 1);
-
   const PATHS_LENGTH = FLATTENED_PATHS.length;
-  const result = new Array(PATHS_LENGTH);
-  const SHOULD_SKIP = object == null;
+  const RESULT = new Array(PATHS_LENGTH);
+  const SHOULD_SKIP = isNull(object);
 
   /**
    * It iterates over the flattenedPaths array.
@@ -32,8 +33,8 @@ export function at(object: any, paths: string | string[]): any[] {
    * The get function is used here to safely retrieve nested properties of the object.
    */
   for (let index = 0; index < PATHS_LENGTH; index++) {
-    result[index] = SHOULD_SKIP ? undefined : get(object, FLATTENED_PATHS[index]);
+    RESULT[index] = SHOULD_SKIP ? undefined : get(object, FLATTENED_PATHS[index]);
   }
 
-  return result;
+  return RESULT;
 }
