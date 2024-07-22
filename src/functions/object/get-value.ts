@@ -1,63 +1,68 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
  * (c) 2024 Feedzai
  */
-import { at, isObject } from "..";
+import { at, isObject, isUndefined } from "..";
 
-interface IGetValueObject<GenericValue = unknown> {
-  [key: string]: GenericValue;
-}
-
-interface IGetValuePayload<Generic> {
+type Payload = {
+  defaultValue?: unknown;
   required?: boolean;
-  defaultValue?: Generic;
-}
+};
 
 /**
  * Gets the value corresponding to the path of an object.
  *
- * If the object is required to have that path and the path does not exists, there are 2 possible outcomes:
+ * If the object is required to have that path and the path does not exist, there are 2 possible outcomes:
  * if a default value is provided, a warning is emitted indicating that value. If not, an error is emitted.
  *
  * If the object is not required to have that path, the default value (provided or undefined) is returned,
  * without any warning.
  *
- * @template GenericData, GenericDefaultValue, GenericReturnValue
- * @param {GenericData} object Holds the object to extract the value from.
- * @param {string} path Holds the object path where to extract the value.
- * @param {IGetValuePayload | undefined} [payload] Set of function options.
- * @returns {GenericReturnValue | undefined}
+ * @example
+ *
+ * ```js
+ * import { getValue } from '@feedzai/js-utilities';
+ *
+ * const OBJ = {
+ *   a: {
+ *    b: {
+ *      c: 123,
+ *    },
+ *  },
+ * };
+ *
+ * const RESULT = getValue(OBJ, "a.b.d", { defaultValue: "a-default-value", required: true });
+ * // => "a-default-value"
+ * ```
  */
-export function getValue<GenericValue, GenericReturnValue>(
-  object: GenericValue | IGetValueObject<GenericValue>,
+export function getValue<T, R = unknown>(
+  object: T,
   path: string,
-  payload?: IGetValuePayload<GenericReturnValue> | undefined
-): GenericReturnValue | undefined {
-  const defaultValue = isObject(payload) ? payload?.defaultValue : undefined;
-  const value = at(object as any, path) as GenericReturnValue[];
-  const res = value[0];
+  payload?: Payload | unknown
+): R | undefined {
+  const TYPED_PAYLOAD = isObject(payload) ? (payload as Payload) : undefined;
+  const DEFAULT_VAL = TYPED_PAYLOAD?.defaultValue;
+  const RESULT = at(object, path)[0];
+  const IS_REQUIRED = TYPED_PAYLOAD?.required ?? false;
 
-  let required: boolean | undefined = false;
-
-  if (isObject(payload) && Object.prototype.hasOwnProperty.call(payload, "required")) {
-    required = payload.required;
+  if (!isUndefined(RESULT)) {
+    return RESULT as R;
   }
 
-  if (res === undefined) {
-    if (required) {
-      if (defaultValue === undefined) {
-        console.error(`The path ${path} does not exist on the object.`);
-      } else {
-        console.warn(
-          `The path ${path} does not exist on the object. Using ${String(defaultValue)} instead.`
-        );
-        return defaultValue;
-      }
-    } else {
-      return defaultValue; // can be undefined, no problem
-    }
+  if (!IS_REQUIRED) {
+    return DEFAULT_VAL as R;
   }
 
-  return res;
+  if (!isUndefined(DEFAULT_VAL)) {
+    console.warn(
+      `[@feedzai/js-utilities] The path ${path} does not exist on the object. Using ${DEFAULT_VAL} instead.`
+    );
+    return DEFAULT_VAL as R;
+  }
+
+  console.error(`[@feedzai/js-utilities] The path ${path} does not exist on the object.`);
+
+  return undefined;
 }
