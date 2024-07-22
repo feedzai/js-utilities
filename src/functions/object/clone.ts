@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
@@ -6,7 +7,7 @@
 import { isPrimitive } from "..";
 
 /**
- * Creates a shallow copy of the given obejct/value.
+ * Creates a shallow copy of the given object/value.
  * @param {*} obj value to clone
  * @returns {*} shallow clone of the given value
  */
