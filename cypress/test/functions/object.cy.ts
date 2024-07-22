@@ -469,17 +469,15 @@ describe("getValue", () => {
         },
       },
     };
-    const defaultValue = "default";
+    const defaultValue = "6fe42570-8204-4fdb-8df7-7542a328b590";
     const spyWarn = cy.spy(console, "warn");
     const result = _.getValue(obj, "a.b.d", { defaultValue, required: true });
     expect(result).to.equal(defaultValue);
-    expect(spyWarn.calledOnce).to.be.true;
-    expect(
-      spyWarn.calledWithExactly(
-        `The path a.b.d does not exist on the object. Using ${defaultValue} instead.`
-      )
-    ).to.be.true;
-    spyWarn.restore();
+
+    cy.wrap(spyWarn).should(
+      "have.been.calledOnceWithExactly",
+      `[@feedzai/js-utilities] The path a.b.d does not exist on the object. Using ${defaultValue} instead.`
+    );
   });
 
   it("should emit an error if the path does not exist and required is true and no default value is provided", () => {
@@ -493,7 +491,11 @@ describe("getValue", () => {
     const spyError = cy.spy(console, "error");
     _.getValue(obj, "a.b.d", { required: true });
     expect(spyError.calledOnce).to.be.true;
-    expect(spyError.calledWithExactly(`The path a.b.d does not exist on the object.`)).to.be.true;
+    expect(
+      spyError.calledWithExactly(
+        `[@feedzai/js-utilities] The path a.b.d does not exist on the object.`
+      )
+    ).to.be.true;
     spyError.restore();
   });
 });

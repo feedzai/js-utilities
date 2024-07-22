@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
@@ -48,23 +49,23 @@ import { isNil } from "..";
  * @param defaultValue The value returned if the resolved value is undefined.
  * @return Returns the resolved value.
  */
-export function get<TDefault = unknown>(
+export function get<T = unknown, TDefault = T>(
   value: any,
-  path: string,
+  path: string | string[],
   defaultValue?: TDefault
-): TDefault | undefined {
+): T | TDefault | undefined {
   if (isNil(path)) {
-    return;
+    return undefined;
   }
 
-  const segments = Array.isArray(path) ? path : path.split(/[\.\[\]]/g);
-  let current: any = value;
-  for (const key of segments) {
-    if (current === null) return defaultValue as TDefault;
-    if (current === undefined) return defaultValue as TDefault;
+  const PATH_SEGMENTS = Array.isArray(path) ? path : path.split(/[\.\[\]]/g);
+  let CURRENT_VALUE: any = value;
+
+  for (const key of PATH_SEGMENTS) {
+    if (CURRENT_VALUE === null || CURRENT_VALUE === undefined) return defaultValue;
     if (key.trim() === "") continue;
-    current = current[key];
+    CURRENT_VALUE = CURRENT_VALUE[key];
   }
-  if (current === undefined) return defaultValue as TDefault;
-  return current;
+
+  return CURRENT_VALUE === undefined ? defaultValue : CURRENT_VALUE;
 }
