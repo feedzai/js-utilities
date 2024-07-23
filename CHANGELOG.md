@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/feedzai/js-utilities/compare/v1.4.2...v1.5.0) (2024-07-23)
+
+
+### Bug Fixes
+
+* **at:** improved types ([0ef9282](https://github.com/feedzai/js-utilities/commit/0ef92820632af28f81ce3fcdfffdbc0ee24eb604))
+* **get:** improved types ([f2af975](https://github.com/feedzai/js-utilities/commit/f2af97560cb74f9a214bac1bda359a5004025147))
+* **getValue:** improved types ([dc12a95](https://github.com/feedzai/js-utilities/commit/dc12a95e4eea1eacf92b78e404edf28c59c840cb))
+
+
+### Features
+
+* **useIntersection:** adds new hook ([b7b8a32](https://github.com/feedzai/js-utilities/commit/b7b8a32162f5b1877f4d9385f5ed50d07ec63745))
+
 ## [1.4.2](https://github.com/feedzai/js-utilities/compare/v1.4.1...v1.4.2) (2024-07-08)
 
 
