@@ -10,6 +10,7 @@ export * from "./use-container-query";
 export * from "./use-controlled-state";
 export * from "./use-copy-to-clipboard";
 export * from "./use-effect-once";
+export * from "./use-ensured-forwarded-ref";
 export * from "./use-intersection";
 export * from "./use-lifecycle";
 export * from "./use-live-ref";
