@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/feedzai/js-utilities/compare/v1.5.0...v1.6.0) (2024-10-25)
+
+
+### Features
+
+* **clone-valid-element:** added tests and improved jsdocs ([a1dcb82](https://github.com/feedzai/js-utilities/commit/a1dcb8278d532ee9ea122c0962629610b8db8edc))
+* **cookies:** added tests and improved jsdoc ([70fde77](https://github.com/feedzai/js-utilities/commit/70fde77e1c6ed887d4cebba6fb5a71f0404193eb))
+* **useControlledState:** added tests and improved jsdoc ([e0919d2](https://github.com/feedzai/js-utilities/commit/e0919d254a204b404369f0f9121dc58845d05f29))
+* **useEnsuredForwardedRef:** added tests and improved jsdoc and docs ([1dc889a](https://github.com/feedzai/js-utilities/commit/1dc889a5f8673926685047c3bee8afabfa2e644d))
+* **usePageVisibility:** added tests ([0d85fcc](https://github.com/feedzai/js-utilities/commit/0d85fcc388931583513304200862ec59f155a2cd))
+* **usePermission:** added tests ([ec60743](https://github.com/feedzai/js-utilities/commit/ec60743905fc91c77d7d8bc208b01ce9d03026dd))
+
 # [1.5.0](https://github.com/feedzai/js-utilities/compare/v1.4.2...v1.5.0) (2024-07-23)
 
 
