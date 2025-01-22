@@ -4,3 +4,4 @@
  * (c) 2024 Feedzai
  */
 export * from "./get-browser-timezone";
+export * from "./format-date";
