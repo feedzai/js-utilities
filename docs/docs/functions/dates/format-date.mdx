@@ -1,0 +1,27 @@
+---
+title: formatDate
+---
+
+Formats a date value into a localized string representation using the `toLocaleDateString()` method.
+
+### API
+
+```typescript
+interface IFormatDateConfig {
+  date: ConstructorParameters<typeof Date>[0];
+  locales?: Intl.LocalesArgument;
+  options?: Intl.DateTimeFormatOptions;
+}
+
+function formatDate(config: IFormatDateConfig): string;
+```
+
+### Usage
+
+```typescript
+import { formatDate } from "@feedzai/js-utilities";
+
+const formattedDate = formatDate({ date: "2023-12-25" });
+
+console.log(formattedDate); // "December 25"
+```
