@@ -1,7 +1,7 @@
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
- * (c) 2024 Feedzai
+ * (c) 2025 Feedzai
  */
 import { formatDate } from "../../../../src/functions";
 
