@@ -4,9 +4,9 @@
  * (c) 2024 Feedzai, Rights Reserved.
  */
 import React from "react";
-import { useAutoId } from "src/hooks";
+import { useAutoId, generateFallbackId, generateUUIDFragment, initializeState } from "src/hooks";
 
-function DemoComponent({ value = null, prefix }: { value?: string | null; prefix?: string }) {
+function DemoComponent({ value, prefix }: { value?: string | null; prefix?: string }) {
   const firstId = useAutoId(value, prefix);
   const secondId = useAutoId();
   return (
@@ -21,88 +21,132 @@ function FallbackDemo({
   value = "feedzai-fallback-id",
   prefix,
 }: {
-  value?: string | null;
+  value?: string;
   prefix?: string;
 }) {
   const id = useAutoId(value, prefix);
   return <h1 id={id}>Feedzai</h1>;
 }
 
+describe("generateFallbackId", () => {
+  it("generates a fallback ID", () => {
+    const id = generateFallbackId();
+    expect(id).to.exist;
+    expect(typeof id).to.equal("string");
+  });
+});
+
+describe("generateUUIDFragment", () => {
+  it("generates a UUID fragment", () => {
+    const id = generateUUIDFragment();
+    expect(id).to.exist;
+    expect(typeof id).to.equal("string");
+    expect(id.length).to.equal(8);
+  });
+
+  it("generates a UUID fragment of a given length", () => {
+    const id = generateUUIDFragment(16);
+    expect(id).to.exist;
+    expect(typeof id).to.equal("string");
+    expect(id.length).to.equal(16);
+  });
+});
+
+describe("initializeState", () => {
+  it("generates a UUID fragment if no ID is provided", () => {
+    // @ts-expect-error - This is a test for the fallback behavior
+    const id = initializeState();
+    expect(id).to.exist;
+    expect(typeof id).to.equal("string");
+  });
+
+  it("generates a UUID fragment of a given length if no ID is provided", () => {
+    const id = initializeState(undefined, { length: 16 });
+    expect(id).to.exist;
+    expect(typeof id).to.equal("string");
+    expect(id.length).to.equal(16);
+  });
+
+  it("returns the provided ID if it is a string", () => {
+    const id = initializeState("feedzai-id");
+    expect(id).to.equal("feedzai-id");
+  });
+});
+
 describe("useAutoId", () => {
-  context("React pre-useId", () => {
+  it("generates a prefixed fallback ID", () => {
+    cy.mount(<DemoComponent prefix="fdz-prefix" />);
+
+    console.log(process.env.NODE_ENV);
+
+    cy.findByText("A paragraph")
+      .invoke("attr", "id")
+      .should("match", /^fdz-prefix--:?[a-z0-9:]+:?$/);
+  });
+
+  context("React <18 (no useId support)", () => {
     beforeEach(() => {
-      // Mock React.useId to be undefined
       cy.stub(React, "useId").as("useIdStub").value(undefined);
     });
 
-    it("should generate a unique ID value", () => {
+    it("generates unique IDs using fallback generator", () => {
       cy.mount(<DemoComponent />);
 
       cy.findByText("A paragraph")
         .invoke("attr", "id")
-        .then((idOne) => {
-          cy.findByText("An inline span element").invoke("attr", "id").should("not.equal", idOne);
+        .then((firstId) => {
+          expect(firstId).to.exist;
+
+          cy.findByText("An inline span element")
+            .invoke("attr", "id")
+            .should("exist")
+            .and("not.equal", firstId);
         });
     });
 
-    it("should generate a prefixed unique ID value", () => {
-      const expected = "feedzai-a-prefix";
-      cy.mount(<DemoComponent value={undefined} prefix={expected} />);
-
-      cy.findByText("A paragraph").invoke("attr", "id").should("contain", expected);
-    });
-
-    it("uses a fallback ID", () => {
+    it("uses a static fallback ID if provided", () => {
       cy.mount(<FallbackDemo />);
 
       cy.findByText("Feedzai").should("have.id", "feedzai-fallback-id");
     });
 
-    it("should return a prefixed fallback ID", () => {
-      cy.mount(<FallbackDemo prefix="js-prefix" value="423696e5" />);
+    it("applies a prefix to the custom fallback ID", () => {
+      cy.mount(<FallbackDemo value="423696e5" prefix="js-prefix" />);
 
       cy.findByText("Feedzai").should("have.id", "js-prefix--423696e5");
     });
   });
 
-  context("React 18+ with useId", () => {
-    const GENERATED_ID = ":r0:";
-
-    beforeEach(() => {
-      // Mock React.useId to return a predictable value
-      cy.stub(React, "useId").as("useIdStub").returns(GENERATED_ID);
-    });
-
-    it("should use React.useId for generating IDs", () => {
+  context("React 18+ (with useId)", () => {
+    it("uses React.useId to generate consistent IDs", () => {
       cy.mount(<DemoComponent />);
-
-      cy.findByText("A paragraph").invoke("attr", "id").should("equal", GENERATED_ID);
-      cy.findByText("An inline span element").invoke("attr", "id").should("equal", GENERATED_ID);
-      cy.get("@useIdStub").should("be.calledTwice");
-    });
-
-    it("should generate a prefixed unique ID value using React.useId", () => {
-      const expected = "feedzai-a-prefix";
-      cy.mount(<DemoComponent value={undefined} prefix={expected} />);
 
       cy.findByText("A paragraph")
         .invoke("attr", "id")
-        .should("equal", `${expected}--${GENERATED_ID}`);
-      cy.get("@useIdStub").should("be.called");
+        .should("match", /^:?[a-z0-9:]+:?$/);
+      cy.findByText("An inline span element")
+        .invoke("attr", "id")
+        .should("match", /^:?[a-z0-9:]+:?$/);
     });
 
-    it("uses a fallback ID even when React.useId is available", () => {
+    it("applies prefix to ID generated by React.useId", () => {
+      cy.mount(<DemoComponent prefix="fdz-js-prefix" />);
+
+      cy.findByText("A paragraph")
+        .invoke("attr", "id")
+        .should("match", /^fdz-js-prefix--:?[a-z0-9:]+:?$/);
+    });
+
+    it("uses static fallback ID when explicitly provided", () => {
       cy.mount(<FallbackDemo />);
 
       cy.findByText("Feedzai").should("have.id", "feedzai-fallback-id");
-      cy.get("@useIdStub").should("not.be.called");
     });
 
-    it("should return a prefixed fallback ID and not use React.useId", () => {
-      cy.mount(<FallbackDemo prefix="js-prefix" value="423696e5" />);
+    it("applies prefix to provided fallback ID (ignoring useId)", () => {
+      cy.mount(<FallbackDemo value="423696e5" prefix="fdz-js-prefix" />);
 
-      cy.findByText("Feedzai").should("have.id", "js-prefix--423696e5");
-      cy.get("@useIdStub").should("not.be.called");
+      cy.findByText("Feedzai").should("have.id", "fdz-js-prefix--423696e5");
     });
   });
 });

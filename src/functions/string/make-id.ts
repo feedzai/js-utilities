@@ -9,11 +9,8 @@
  * Joins strings to format IDs for compound components.
  *
  * @example
- *
- * // Custom generated id by using the `useAutoId` hook and the `makeId` function
- * // to join the auto-generated id with a custom string
- * const autoId = useAutoId(id);
- * const { current: generatedId } = useRef(makeId("fdz-js-tabbable-button-", autoId));
+ * makeId("fdz-js-tabbable-button", "123")
+ * // => "fdz-js-tabbable--button-123"
  *
  * @param args
  * @returns {string}
