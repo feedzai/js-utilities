@@ -94,6 +94,10 @@
     "vite-tsconfig-paths": "^4.3.2",
     "vite": "^5.4.10"
   },
+  "optionalDependencies": {
+    "react": ">= 16",
+    "react-dom": ">= 16"
+  },
   "size-limit": [
     {
       "path": "dist/index.cjs",
