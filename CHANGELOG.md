@@ -1,3 +1,22 @@
+# [2.0.0](https://github.com/feedzai/js-utilities/compare/v1.6.0...v2.0.0) (2025-06-03)
+
+
+### Bug Fixes
+
+* added peerDependenciesMeta instead of optionalDependencies ([6715a63](https://github.com/feedzai/js-utilities/commit/6715a638cc278a49f7f8cb357be20859c5483c18))
+
+
+### Features
+
+* add optional dependencies for react ([88cce74](https://github.com/feedzai/js-utilities/commit/88cce7456a3eb3e4642da8cf99ee815398c23165))
+* **formatDate:** adds new date helper function ([26d3d34](https://github.com/feedzai/js-utilities/commit/26d3d349288ebaca81311c4a3bb53dbe15bd13e6))
+* **hooks:** refactor useAutoId for better SSR and type safety ([4a99fd5](https://github.com/feedzai/js-utilities/commit/4a99fd50e92f390a9edea83549c3e0f0a7c64fd5))
+
+
+### BREAKING CHANGES
+
+* **hooks:** useAutoId now always returns a string instead of string | undefined
+
 # [1.6.0](https://github.com/feedzai/js-utilities/compare/v1.5.0...v1.6.0) (2024-10-25)
 
 
