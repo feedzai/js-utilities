@@ -23,13 +23,15 @@ export interface MakeCancelablePromise<T = unknown> {
    * The wrapped promise that can be aborted
    */
   promise: Promise<T>;
+
   /**
    * Aborts the promise execution. Safe to call multiple times - subsequent calls will be ignored if already cancelled.
    */
-  cancel: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cancel: (reason?: any) => void;
+
   /**
    * Checks whether the promise has been cancelled
-   * @returns {boolean} True if the promise has been cancelled, false otherwise
    */
   isCancelled: () => boolean;
 }
@@ -94,7 +96,6 @@ export interface MakeCancelablePromise<T = unknown> {
  */
 export function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelablePromise<T> {
   const controller = new AbortController();
-  let isCancelled = false;
 
   const wrappedPromise = new Promise<T>((resolve, reject) => {
     // Early return if already cancelled
@@ -105,7 +106,6 @@ export function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelable
 
     // Add abort signal listener
     const abortHandler = () => {
-      isCancelled = true;
       reject(new AbortPromiseError());
     };
 
@@ -133,13 +133,14 @@ export function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelable
 
   return {
     promise: wrappedPromise,
-    cancel() {
-      if (!isCancelled) {
-        controller.abort();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cancel(reason?: any) {
+      if (!controller.signal.aborted) {
+        controller.abort(reason);
       }
     },
     isCancelled() {
-      return isCancelled;
+      return controller.signal.aborted;
     },
   };
 }
