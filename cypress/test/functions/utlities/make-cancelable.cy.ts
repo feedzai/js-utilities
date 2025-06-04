@@ -36,13 +36,14 @@ describe("makeCancelable", () => {
     await expectAbort(cancelable);
   });
 
-  it("should return an object with a promise, cancel function, and isCancelled function", () => {
+  it("should return an object with a promise, cancel function, isCancelled function, and signal", () => {
     const promise = wait(25);
     const cancelable = makeCancelable(promise);
     expect(cancelable).to.be.an("object");
     expect(cancelable.promise).to.be.a("promise");
     expect(cancelable.cancel).to.be.a("function");
     expect(cancelable.isCancelled).to.be.a("function");
+    expect(cancelable.signal).to.be.an("AbortSignal");
   });
 
   it("should resolve the promise if not cancelled", async () => {
@@ -137,5 +138,92 @@ describe("makeCancelable", () => {
         expect(error.message).to.equal("Promise was aborted");
       }
     }
+  });
+
+  describe("signal property", () => {
+    it("should be an AbortSignal instance", () => {
+      const promise = wait(25);
+      const cancelable = makeCancelable(promise);
+      expect(cancelable.signal).to.be.instanceOf(AbortSignal);
+    });
+
+    it("should reflect cancellation state", () => {
+      const promise = wait(25);
+      const cancelable = makeCancelable(promise);
+      expect(cancelable.signal.aborted).to.be.false;
+      cancelable.cancel();
+      expect(cancelable.signal.aborted).to.be.true;
+    });
+
+    it("should be usable with fetch", async () => {
+      const promise = wait(25);
+      const cancelable = makeCancelable(promise);
+
+      // Simulate a fetch request that would use the signal
+      const fetchPromise = new Promise((resolve, reject) => {
+        cancelable.signal.addEventListener("abort", () => {
+          reject(new AbortPromiseError());
+        });
+        setTimeout(resolve, 50);
+      });
+
+      cancelable.cancel();
+      try {
+        await fetchPromise;
+        throw new Error("Promise should have been rejected");
+      } catch (error: unknown) {
+        expect(error).to.be.instanceOf(AbortPromiseError);
+      }
+    });
+
+    it("should be usable with multiple promises", async () => {
+      const promise1 = wait(25);
+      const cancelable1 = makeCancelable(promise1);
+
+      // Simulate multiple operations using the same signal
+      const operation1 = new Promise((resolve, reject) => {
+        cancelable1.signal.addEventListener("abort", () => reject(new AbortPromiseError()));
+        setTimeout(resolve, 50);
+      });
+
+      const operation2 = new Promise((resolve, reject) => {
+        cancelable1.signal.addEventListener("abort", () => reject(new AbortPromiseError()));
+        setTimeout(resolve, 50);
+      });
+
+      cancelable1.cancel();
+
+      try {
+        await operation1;
+        throw new Error("Promise should have been rejected");
+      } catch (error: unknown) {
+        expect(error).to.be.instanceOf(AbortPromiseError);
+      }
+
+      try {
+        await operation2;
+        throw new Error("Promise should have been rejected");
+      } catch (error: unknown) {
+        expect(error).to.be.instanceOf(AbortPromiseError);
+      }
+    });
+
+    it("should handle custom abort reason", async () => {
+      const promise = wait(25);
+      const cancelable = makeCancelable(promise);
+      const reason = "Custom abort reason";
+
+      cancelable.cancel(reason);
+
+      try {
+        await cancelable.promise;
+        throw new Error("Promise should have been rejected");
+      } catch (error: unknown) {
+        expect(error).to.be.instanceOf(AbortPromiseError);
+        if (error instanceof AbortPromiseError) {
+          expect(error.message).to.equal("Promise was aborted");
+        }
+      }
+    });
   });
 });

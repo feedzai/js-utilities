@@ -34,6 +34,13 @@ export interface MakeCancelablePromise<T = unknown> {
    * Checks whether the promise has been cancelled
    */
   isCancelled: () => boolean;
+
+  /**
+   * The AbortSignal object that can be used to check if the promise has been cancelled.
+   * This signal can be used to coordinate cancellation across multiple promises or network requests
+   * by passing it to other abortable operations that should be cancelled together.
+   */
+  signal: AbortSignal;
 }
 
 /**
@@ -142,5 +149,6 @@ export function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelable
     isCancelled() {
       return controller.signal.aborted;
     },
+    signal: controller.signal,
   };
 }
