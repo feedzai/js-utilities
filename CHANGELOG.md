@@ -1,3 +1,13 @@
+# [2.1.0](https://github.com/feedzai/js-utilities/compare/v2.0.0...v2.1.0) (2025-06-04)
+
+
+### Features
+
+* **at:** added type safety to return value with generics ([33bf4d7](https://github.com/feedzai/js-utilities/commit/33bf4d7cb5df8c785b75240bcfec63662ccccee6))
+* **callIfExists:** improved type safety ([7475ebf](https://github.com/feedzai/js-utilities/commit/7475ebf7993f3478a6f3895d53645340082124c9))
+* **getValue:** improved type safety and documentation ([1fe4db5](https://github.com/feedzai/js-utilities/commit/1fe4db53924db12a98cbbe6c2236d6366472cb5b))
+* **types:** removed react-related types ([5fc769d](https://github.com/feedzai/js-utilities/commit/5fc769d1927cbd74c3035455189a975a4dd9ff02))
+
 # [2.0.0](https://github.com/feedzai/js-utilities/compare/v1.6.0...v2.0.0) (2025-06-03)
 
 
