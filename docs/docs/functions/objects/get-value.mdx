@@ -12,7 +12,10 @@ without any warning.
 ## API
 
 ```typescript
-function getValue<GenericValue, GenericReturnValue>(object: GenericValue | IGetValueObject<GenericValue>, path: string, payload?: IGetValuePayload<GenericReturnValue> | undefined): GenericReturnValue | undefined;
+function getValue<
+  GenericValue,
+  GenericResult = GenericValue extends object ? unknown : never
+>(object: GenericValue, path: string, options?: Options & { defaultValue?: GenericResult }): GenericReturnValue | undefined;
 ```
 
 ### Usage
@@ -20,14 +23,8 @@ function getValue<GenericValue, GenericReturnValue>(object: GenericValue | IGetV
 ```tsx
 import { getValue } from '@feedzai/js-utilities';
 
-const OBJ = {
-  a: {
-    b: {
-      c: 123,
-    },
-  },
-};
-
-const RESULT = getValue(OBJ, "a.b.d", { defaultValue: "default", required: true });
-// => "default"
+const obj = { a: { b: { c: 123 } } };
+getValue(obj, "a.b.c"); // => 123
+getValue(obj, "a.b.d", { defaultValue: "fallback" }); // => "fallback"
+getValue(obj, "a.b.d", { required: true }); // throws Error
 ```

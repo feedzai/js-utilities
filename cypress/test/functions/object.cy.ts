@@ -68,6 +68,7 @@ describe("omit", () => {
 
   it("should return the original object if keys array is undefined", () => {
     const object = { a: 1, b: "2", c: 3 };
+    // @ts-expect-error - This is a test
     const result = _.omit(object, undefined);
     expect(result).to.equal(object);
   });
@@ -129,6 +130,7 @@ describe("get", () => {
   });
 
   it("should return undefined if path is null", () => {
+    // @ts-expect-error - This is a test
     const result = _.get(simpleObject, null);
 
     expect(result).to.be.undefined;
@@ -158,6 +160,7 @@ describe("set", () => {
 
   it("should create missing index properties as arrays", () => {
     const object = {};
+    // @ts-expect-error - This is a test
     const result = _.set(object, ["x", "0", "y", "z"], 5);
 
     expect(result.x[0].y.z).to.equal(5);
@@ -174,18 +177,21 @@ describe("set", () => {
 
   it("should handle null initial object", () => {
     const object = null;
+    // @ts-expect-error - This is a test
     const result = _.set(object, "a.b.c", 4);
     expect(result).to.deep.equal({});
   });
 
   it("should handle undefined initial object", () => {
     const object = undefined;
+    // @ts-expect-error - This is a test
     const result = _.set(object, "a.b.c", 4);
     expect(result).to.deep.equal({});
   });
 
   it("should handle undefined path", () => {
     const object = { a: 1 };
+    // @ts-expect-error - This is a test
     const result = _.set(object, undefined, 2);
     expect(result).to.equal(object);
   });
@@ -204,6 +210,7 @@ describe("set", () => {
 
   it("should handle empty path and undefined value", () => {
     const object = { a: 1 };
+    // @ts-expect-error - This is a test
     const result = _.set(object, "");
     expect(result).to.equal(object);
   });
@@ -276,12 +283,14 @@ describe("pick", () => {
 
   it("should handle null object", () => {
     const object = null;
+    // @ts-expect-error - This is a test
     const picked = _.pick(object, ["a", "b"]);
     expect(picked).to.deep.equal({});
   });
 
   it("should handle undefined object", () => {
     const object = undefined;
+    // @ts-expect-error - This is a test
     const picked = _.pick(object, ["a", "b"]);
     expect(picked).to.deep.equal({});
   });
@@ -292,6 +301,7 @@ describe("pick", () => {
       b: 2,
       c: 3,
     };
+    // @ts-expect-error - This is a test
     const picked = _.pick(object, ["a", "d"]);
     expect(picked).to.deep.equal({ a: 1 });
   });
@@ -329,21 +339,25 @@ describe("has", () => {
 
   it("should handle null object", () => {
     const object = null;
+    // @ts-expect-error - This is a test
     expect(_.has(object, "a")).to.be.false;
   });
 
   it("should handle undefined object", () => {
     const object = undefined;
+    // @ts-expect-error - This is a test
     expect(_.has(object, "a")).to.be.false;
   });
 
   it("should handle null path", () => {
     const object = { a: { bar: 2 } };
+    // @ts-expect-error - This is a test
     expect(_.has(object, null)).to.be.false;
   });
 
   it("should handle undefined path", () => {
     const object = { a: { bar: 2 } };
+    // @ts-expect-error - This is a test
     expect(_.has(object, undefined)).to.be.false;
   });
 
@@ -399,6 +413,7 @@ describe("isEqual function", () => {
   });
 
   it("should return false for different values", () => {
+    // @ts-expect-error - This is a test
     expect(_.isEqual(42, "42")).to.be.false;
     expect(_.isEqual({ a: 1 }, { b: 2 })).to.be.false;
     expect(_.isEqual([1, 2, 3], [1, 2])).to.be.false;
@@ -436,66 +451,89 @@ describe("isEqual function", () => {
 });
 
 describe("getValue", () => {
-  it("should return the value corresponding to the provided path", () => {
-    const obj = {
-      a: {
-        b: {
-          c: 123,
-        },
+  const testObject = {
+    a: {
+      b: {
+        c: 123,
       },
-    };
-    const result = _.getValue(obj, "a.b.c");
-    expect(result).to.equal(123);
+    },
+    items: [
+      { id: 1, name: "Item 1" },
+      { id: 2, name: "Item 2" },
+    ],
+  };
+
+  it("should return the value at the specified path", () => {
+    expect(_.getValue(testObject, "a.b.c")).to.equal(123);
+    expect(_.getValue(testObject, "items[0].name")).to.equal("Item 1");
   });
 
-  it("should return the default value if the path does not exist and required is false", () => {
-    const obj = {
-      a: {
-        b: {
-          c: 123,
-        },
-      },
-    };
-    const defaultValue = "default";
-    const result = _.getValue(obj, "a.b.d", { defaultValue, required: false });
-    expect(result).to.equal(defaultValue);
-  });
-
-  it("should emit a warning and return the default value if the path does not exist and required is true", () => {
-    const obj = {
-      a: {
-        b: {
-          c: 123,
-        },
-      },
-    };
-    const defaultValue = "6fe42570-8204-4fdb-8df7-7542a328b590";
-    const spyWarn = cy.spy(console, "warn");
-    const result = _.getValue(obj, "a.b.d", { defaultValue, required: true });
-    expect(result).to.equal(defaultValue);
-
-    cy.wrap(spyWarn).should(
-      "have.been.calledOnceWithExactly",
-      `[@feedzai/js-utilities] The path a.b.d does not exist on the object. Using ${defaultValue} instead.`
+  it("should throw error for empty path", () => {
+    expect(() => _.getValue(testObject, "")).to.throw(
+      "[@feedzai/js-utilities] getValue: Path must be a non-empty string"
+    );
+    expect(() => _.getValue(testObject, "   ")).to.throw(
+      "[@feedzai/js-utilities] getValue: Path must be a non-empty string"
     );
   });
 
-  it("should emit an error if the path does not exist and required is true and no default value is provided", () => {
-    const obj = {
+  it("should throw error for non-object input", () => {
+    expect(() => _.getValue(null, "a.b.c")).to.throw(
+      "[@feedzai/js-utilities] getValue: Input must be a valid object."
+    );
+    expect(() => _.getValue(undefined, "a.b.c")).to.throw(
+      "[@feedzai/js-utilities] getValue: Input must be a valid object."
+    );
+    expect(() => _.getValue(42, "a.b.c")).to.throw(
+      "[@feedzai/js-utilities] getValue: Input must be a valid object."
+    );
+  });
+
+  it("should return default value when path doesn't exist and not required", () => {
+    const defaultValue = "default";
+    expect(_.getValue(testObject, "a.b.d", { defaultValue })).to.equal(defaultValue);
+    expect(_.getValue(testObject, "x.y.z", { defaultValue })).to.equal(defaultValue);
+  });
+
+  it("should return undefined when path doesn't exist, not required, and no default value", () => {
+    expect(_.getValue(testObject, "a.b.d")).to.be.undefined;
+    expect(_.getValue(testObject, "x.y.z")).to.be.undefined;
+  });
+
+  it("should emit warning and return default value when path is required but doesn't exist", () => {
+    const defaultValue = "default";
+    const spyWarn = cy.spy(console, "warn");
+
+    const result = _.getValue(testObject, "a.b.d", { defaultValue, required: true });
+
+    expect(result).to.equal(defaultValue);
+    cy.wrap(spyWarn).should(
+      "have.been.calledOnceWithExactly",
+      "[@feedzai/js-utilities] getValue: Path a.b.d does not exist on the object. Using the default value instead."
+    );
+  });
+
+  it("should throw error when path is required but doesn't exist and no default value", () => {
+    expect(() => _.getValue(testObject, "a.b.d", { required: true })).to.throw(
+      '[@feedzai/js-utilities] getValue: The required path "a.b.d" was not found and no defaultValue was provided.'
+    );
+  });
+
+  it("should handle array indices in path", () => {
+    expect(_.getValue(testObject, "items[1].name")).to.equal("Item 2");
+    expect(_.getValue(testObject, "items[99].name", { defaultValue: "Not Found" })).to.equal(
+      "Not Found"
+    );
+  });
+
+  it("should handle nested objects and arrays", () => {
+    const complexObject = {
       a: {
-        b: {
-          c: 123,
-        },
+        b: [{ c: 1 }, { c: 2 }, { d: { e: 3 } }],
       },
     };
-    const spyError = cy.spy(console, "error");
-    _.getValue(obj, "a.b.d", { required: true });
-    expect(spyError.calledOnce).to.be.true;
-    expect(
-      spyError.calledWithExactly(
-        `[@feedzai/js-utilities] The path a.b.d does not exist on the object.`
-      )
-    ).to.be.true;
-    spyError.restore();
+
+    expect(_.getValue(complexObject, "a.b[0].c")).to.equal(1);
+    expect(_.getValue(complexObject, "a.b[2].d.e")).to.equal(3);
   });
 });
