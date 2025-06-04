@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/feedzai/js-utilities/compare/v2.1.0...v2.2.0) (2025-06-04)
+
+
+### Features
+
+* **make-cancelable:** add support for cancelling promises using AbortController ([#4](https://github.com/feedzai/js-utilities/issues/4)) ([fff898a](https://github.com/feedzai/js-utilities/commit/fff898a45cc0f8d844fb22bc8fd5d6407bae03d8))
+
 # [2.1.0](https://github.com/feedzai/js-utilities/compare/v2.0.0...v2.1.0) (2025-06-04)
 
 
