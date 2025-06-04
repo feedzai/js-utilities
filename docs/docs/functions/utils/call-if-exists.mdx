@@ -6,7 +6,10 @@ Executes the given callback function, if present.
 ## API
 
 ```typescript
-function callIfExists<GenericFunctionType>(callback: GenericFunctionType, ...args: any[]): void;
+function callIfExists<T extends (...args: unknown[]) => ReturnType<T>>(
+  callback: T | undefined | null,
+  ...args: Parameters<T>
+): ReturnType<T> | undefined
 ```
 
 ### Usage
