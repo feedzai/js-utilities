@@ -1,66 +1,154 @@
 /**
  * Please refer to the terms of the license agreement in the root of the project
  *
- * (c) 2024 Feedzai
+ * (c) 2025 Feedzai
  */
+
+import { off, on } from "../events";
 
 /**
- * Helper method that wraps a normal Promise and allows it to be cancelled.
+ * Custom error type for aborted promises
  */
-export interface MakeCancelablePromise<GenericReturnValue = unknown> {
-  /**
-   * Holds the promise itself
-   */
-  promise: Promise<GenericReturnValue>;
-
-  /**
-   * Rejects the promise by cancelling it
-   */
-  cancel: () => void;
+export class AbortPromiseError extends DOMException {
+  constructor(message = "Promise was aborted") {
+    super(message, "AbortError");
+  }
 }
 
 /**
- * Helper method that wraps a normal Promise and allows it to be cancelled.
+ * Helper interface for a cancelable promise that uses AbortController
+ */
+export interface MakeCancelablePromise<T = unknown> {
+  /**
+   * The wrapped promise that can be aborted
+   */
+  promise: Promise<T>;
+
+  /**
+   * Aborts the promise execution. Safe to call multiple times - subsequent calls will be ignored if already cancelled.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cancel: (reason?: any) => void;
+
+  /**
+   * Checks whether the promise has been cancelled
+   */
+  isCancelled: () => boolean;
+
+  /**
+   * The AbortSignal object that can be used to check if the promise has been cancelled.
+   * This signal can be used to coordinate cancellation across multiple promises or network requests
+   * by passing it to other abortable operations that should be cancelled together.
+   */
+  signal: AbortSignal;
+}
+
+/**
+ * Wraps a Promise to make it cancelable using AbortController.
+ * This is useful for cancelling long-running operations or preventing memory leaks
+ * when a component unmounts before an async operation completes.
+ *
+ * @template T - The type of the value that the promise resolves to
+ * @param promise - The promise to make cancelable
+ * @returns {MakeCancelablePromise<T>} An object containing:
+ *   - promise: The wrapped promise that can be aborted
+ *   - cancel: Function to abort the promise
+ *   - isCancelled: Function to check if the promise has been cancelled
  *
  * @example
+ * ```ts
+ * import { wait } from "@feedzai/js-utilities";
  *
- * ```js
- * import { wait } from "@joaomtmdias/js-utilities";
- *
- * // A Promise that resolves after 1 second
+ * // Create a Promise that resolves after 1 second
  * const somePromise = wait(1000);
  *
- * // Can also be made cancellable by wrapping it
+ * // Make it cancelable
  * const cancelable = makeCancelable(somePromise);
  *
- * // So that when we execute said wrapped promise...
+ * // Execute the wrapped promise
  * cancelable.promise
- *  .then(console.log)
- *  .catch(({ isCanceled }) => console.error('isCanceled', isCanceled));
+ *   .then(console.log)
+ *   .catch(error => {
+ *     if (error instanceof AbortPromiseError) {
+ *       console.log('Promise was cancelled');
+ *     } else {
+ *       console.error('Other error:', error);
+ *     }
+ *   });
  *
- * // We can cancel it on demand
+ * // Cancel it when needed
  * cancelable.cancel();
  * ```
+ *
+ * @example
+ * ```tsx
+ * import { makeCancelable } from "@feedzai/js-utilities";
+ * import { useEffect } from "react";
+ *
+ * function MyComponent() {
+ *   useEffect(() => {
+ *     const cancelable = makeCancelable(fetchData());
+ *
+ *     cancelable.promise
+ *       .then(setData)
+ *       .catch(handleError);
+ *
+ *     // Cleanup on unmount
+ *     return () => cancelable.cancel();
+ *   }, []);
+ *
+ *   return <div>...</div>;
+ * }
+ * ```
  */
-export function makeCancelable<GenericPromiseValue = unknown>(
-  promise: Promise<GenericPromiseValue>
-): MakeCancelablePromise<GenericPromiseValue> {
-  let hasCanceled_ = false;
+export function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelablePromise<T> {
+  const controller = new AbortController();
 
-  const wrappedPromise = new Promise<GenericPromiseValue>((resolve, reject) => {
+  const wrappedPromise = new Promise<T>((resolve, reject) => {
+    // Early return if already cancelled
+    if (controller.signal.aborted) {
+      reject(new AbortPromiseError());
+      return;
+    }
+
+    // Add abort signal listener
+    const abortHandler = () => {
+      reject(new AbortPromiseError());
+    };
+
+    on(controller.signal, "abort", abortHandler);
+
+    // Execute the original promise
     promise
-      .then((val) => {
-        return hasCanceled_ ? reject({ isCanceled: true }) : resolve(val);
+      .then((value) => {
+        // Only resolve if not aborted
+        if (!controller.signal.aborted) {
+          resolve(value);
+        }
       })
       .catch((error) => {
-        return hasCanceled_ ? reject({ isCanceled: true }) : reject(error);
+        // Only reject if not aborted
+        if (!controller.signal.aborted) {
+          reject(error);
+        }
+      })
+      .finally(() => {
+        // Clean up the abort listener
+        off(controller.signal, "abort", abortHandler);
       });
   });
 
   return {
     promise: wrappedPromise,
-    cancel() {
-      hasCanceled_ = true;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cancel(reason?: any) {
+      if (!controller.signal.aborted) {
+        controller.abort(reason);
+      }
     },
+    isCancelled() {
+      return controller.signal.aborted;
+    },
+    signal: controller.signal,
   };
 }

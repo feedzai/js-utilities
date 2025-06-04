@@ -1,28 +1,160 @@
 ---
 title: makeCancelable
 ---
-Wraps a native Promise and allows it to be cancelled.
+Wraps a native Promise and allows it to be cancelled using AbortController. This is useful for cancelling long-running operations or preventing memory leaks when a component unmounts before an async operation completes. The function also provides access to the underlying AbortSignal, which can be used to coordinate cancellation across multiple promises or network requests.
 
 ## API
 
 ```typescript
-function makeCancelable<GenericPromiseValue = unknown>(promise: Promise<GenericPromiseValue>): MakeCancelablePromise<GenericPromiseValue>;
+interface MakeCancelablePromise<T = unknown> {
+  /**
+   * The wrapped promise that can be aborted
+   */
+  promise: Promise<T>;
+
+  /**
+   * Aborts the promise execution. Safe to call multiple times - subsequent calls will be ignored if already cancelled.
+   * @param reason - Optional reason for the cancellation
+   */
+  cancel: (reason?: any) => void;
+
+  /**
+   * Checks whether the promise has been cancelled
+   */
+  isCancelled: () => boolean;
+
+  /**
+   * The AbortSignal object that can be used to check if the promise has been cancelled.
+   * This signal can be used to coordinate cancellation across multiple promises or network requests
+   * by passing it to other abortable operations that should be cancelled together.
+   */
+  signal: AbortSignal;
+}
+
+function makeCancelable<T = unknown>(promise: Promise<T>): MakeCancelablePromise<T>;
 ```
 
 ### Usage
 
 ```tsx
-import { wait } from '@feedzai/js-utilities';
+import { makeCancelable, wait } from '@feedzai/js-utilities';
 
 // A Promise that resolves after 1 second
 const somePromise = wait(1000);
 
-// Can also be made cancellable by wrapping it
+// Make it cancelable
 const cancelable = makeCancelable(somePromise);
 
-// So that when we execute said wrapped promise...
-cancelable.promise.then(console.log).catch(({ isCanceled }) => console.error('isCanceled', isCanceled));
+// Execute the wrapped promise
+cancelable.promise
+  .then(console.log)
+  .catch(error => {
+    if (error instanceof AbortPromiseError) {
+      console.log('Promise was cancelled');
+    } else {
+      console.error('Other error:', error);
+    }
+  });
 
-// We can cancel it on demand
+// Cancel it when needed
+cancelable.cancel();
+
+// Check if already cancelled
+if (cancelable.isCancelled()) {
+  console.log('Promise was already cancelled');
+}
+
+// Use the signal with other abortable operations
+fetch('/api/data', { signal: cancelable.signal })
+  .then(response => response.json())
+  .catch(error => {
+    if (error instanceof AbortPromiseError) {
+      console.log('Fetch was cancelled');
+    }
+  });
+```
+
+### React Example
+
+```tsx
+import { makeCancelable } from '@feedzai/js-utilities';
+import { useEffect } from 'react';
+
+function MyComponent() {
+  useEffect(() => {
+    const cancelable = makeCancelable(fetchData());
+
+    // Use the signal with multiple operations
+    const fetchUser = fetch('/api/user', { signal: cancelable.signal });
+    const fetchSettings = fetch('/api/settings', { signal: cancelable.signal });
+
+    Promise.all([cancelable.promise, fetchUser, fetchSettings])
+      .then(([data, user, settings]) => {
+        setData(data);
+        setUser(user);
+        setSettings(settings);
+      })
+      .catch(error => {
+        if (error instanceof AbortPromiseError) {
+          // Handle cancellation
+          console.log('Data fetch was cancelled');
+        } else {
+          // Handle other errors
+          console.error('Error fetching data:', error);
+        }
+      });
+
+    // Cleanup on unmount
+    return () => cancelable.cancel();
+  }, []);
+
+  return <div>...</div>;
+}
+```
+
+### Error Handling
+
+When a promise is cancelled, it rejects with an `AbortPromiseError`. This error extends `DOMException` and has the following properties:
+
+- `name`: "AbortError"
+- `message`: "Promise was aborted"
+
+You can check for cancellation by using `instanceof`:
+
+```typescript
+try {
+  await cancelable.promise;
+} catch (error) {
+  if (error instanceof AbortPromiseError) {
+    // Handle cancellation
+  } else {
+    // Handle other errors
+  }
+}
+```
+
+### Coordinating Multiple Operations
+
+The `signal` property can be used to coordinate cancellation across multiple operations. This is particularly useful when you need to cancel multiple related operations together:
+
+```typescript
+const cancelable = makeCancelable(fetchData());
+
+// Use the same signal for multiple operations
+const operation1 = new Promise((resolve, reject) => {
+  cancelable.signal.addEventListener('abort', () => {
+    reject(new AbortPromiseError());
+  });
+  // ... operation logic
+});
+
+const operation2 = new Promise((resolve, reject) => {
+  cancelable.signal.addEventListener('abort', () => {
+    reject(new AbortPromiseError());
+  });
+  // ... operation logic
+});
+
+// Cancelling the original promise will also cancel all operations using its signal
 cancelable.cancel();
 ```
