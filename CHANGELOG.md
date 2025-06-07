@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/feedzai/js-utilities/compare/v2.2.0...v2.3.0) (2025-06-07)
+
+
+### Features
+
+* **useAutoId:** removed colons from react generated id ([967908b](https://github.com/feedzai/js-utilities/commit/967908baca397b35969eca1b5b10ad339f4b79fb))
+
 # [2.2.0](https://github.com/feedzai/js-utilities/compare/v2.1.0...v2.2.0) (2025-06-04)
 
 
