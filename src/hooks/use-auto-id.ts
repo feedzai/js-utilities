@@ -87,7 +87,7 @@ export function useAutoId(
     }
   });
 
-  const baseId = customId ?? reactId ?? generatedId;
+  const baseId = customId ?? reactId?.replace(/:/g, "") ?? generatedId;
 
   return useMemo(() => {
     return prefix ? makeId(prefix, baseId) : baseId;
