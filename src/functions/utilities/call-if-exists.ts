@@ -27,11 +27,12 @@ import { isFunction } from "../typed";
  * callIfExists(undefined); // => undefined
  * callIfExists(null); // => undefined
  */
-export function callIfExists<T extends (...args: unknown[]) => ReturnType<T>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function callIfExists<T extends (...args: any[]) => any>(
   callback: T | undefined | null,
   ...args: Parameters<T>
 ): ReturnType<T> | undefined {
   if (isFunction(callback)) {
-    return callback(...args);
+    return callback?.(...args);
   }
 }
