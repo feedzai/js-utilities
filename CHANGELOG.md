@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/feedzai/js-utilities/compare/v2.3.0...v2.3.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **callIfExists:** generic constraint does not accomodate specific argument types ([954e640](https://github.com/feedzai/js-utilities/commit/954e640352ff3029bc7b5c6023fb2d53d6be74ad))
+
 # [2.3.0](https://github.com/feedzai/js-utilities/compare/v2.2.0...v2.3.0) (2025-06-07)
 
 
