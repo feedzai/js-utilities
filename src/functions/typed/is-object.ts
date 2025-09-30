@@ -3,7 +3,6 @@
  *
  * (c) 2024 Feedzai
  */
-import { isNil } from ".";
 
 /**
  * Checks if `value` is the language type of `Object`.
@@ -25,10 +24,13 @@ import { isNil } from ".";
  * // false
  */
 export function isObject(value: unknown): value is object {
-  if (isNil(value)) {
+  if (value === null) {
     return false;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (typeof value !== "object") {
+    return false;
+  }
+
   return (value as any).constructor === Object;
 }
