@@ -1,3 +1,15 @@
+# [2.4.0](https://github.com/feedzai/js-utilities/compare/v2.3.1...v2.4.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* **isObject:** removed isNil and used native verification ([5481249](https://github.com/feedzai/js-utilities/commit/5481249a5ec93668eeeaf965b2b9d17728e57381))
+
+
+### Features
+
+* **useMergeRefs:** add option to merge two or more refs ([46a1bd9](https://github.com/feedzai/js-utilities/commit/46a1bd9e255fbcc8bba4727b6a7ede04da28510b))
+
 ## [2.3.1](https://github.com/feedzai/js-utilities/compare/v2.3.0...v2.3.1) (2025-06-11)
 
 
