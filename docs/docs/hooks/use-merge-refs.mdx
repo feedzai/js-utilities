@@ -13,6 +13,7 @@ This hook enhances component flexibility and reusability, allowing developers to
 
 ```typescript
 function useMergeRefs<Generic = HTMLElement>(firstRef: SingleRef<Generic>, secondRef: SingleRef<Generic>): MergedRefCallback<Generic>;
+function useMergeRefs<Generic = HTMLElement>(refs: Array<SingleRef<Generic> | undefined>): MergedRefCallback<Generic>;
 ```
 
 ### Usage
@@ -20,10 +21,23 @@ function useMergeRefs<Generic = HTMLElement>(firstRef: SingleRef<Generic>, secon
 ```tsx
 import { useMergeRefs } from '@feedzai/js-utilities/hooks';
 
-// a div with multiple refs
+// a div with two refs
 function Example({ ref, ...props }) {
   const internalRef = React.useRef();
   const refs = useMergeRefs(internalRef, ref);
+
+  return (
+    <div {...props} ref={refs}>
+      A div with multiple refs.
+    </div>
+  );
+}
+
+// a div with multiple refs
+function Example({ ref, ...props }) {
+  const internalRef = React.useRef();
+  const anotherRef = React.useRef();
+  const refs = useMergeRefs([internalRef, ref, anotherRef]);
 
   return (
     <div {...props} ref={refs}>
