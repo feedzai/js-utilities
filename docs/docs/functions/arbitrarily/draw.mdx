@@ -8,7 +8,7 @@ This helper can also be useful for using inside tests where - given a list of po
 ## API
 
 ```typescript
-function random(lower?: number, upper?: number | boolean, floating?: boolean): number;
+function draw<T>(array: readonly T[]): T | null;
 ```
 
 ### Usage

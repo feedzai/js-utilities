@@ -126,6 +126,14 @@ describe("isObject", () => {
   it("should return false for a new String('')", () => {
     expect(_.isObject(new String(""))).to.be.false;
   });
+
+  it("should return false for an array", () => {
+    expect(_.isObject([1, 2, 3])).to.be.false;
+  });
+
+  it("should return false for an arrow function", () => {
+    expect(_.isObject(() => {})).to.be.false;
+  });
 });
 
 describe("isPlainObject", () => {

@@ -24,7 +24,7 @@ import { isNil } from "..";
  * // => 3
  *
  * get(complexObject, ['a', '0', 'bar', 'c'])
- * // => 2
+ * // => 3
  *
  * get(simpleObject, 'a.bar.c', 'default')
  * // => 'default'
