@@ -31,7 +31,7 @@ It also comes with comprehensive documentation, making it a breeze to navigate a
 
 The package is available in both CommonJS and ES Modules formats so, whether you're working in a traditional environment or embracing the latest ES Modules, we have you covered.
 
-For JavaScript and TypeScript developers seeking a lightweight but robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` might jus be the answer!
+For JavaScript and TypeScript developers seeking a lightweight but robust toolkit that balances simplicity with utility, `@feedzai/js-utilities` might just be the answer!
 
 ## Table of Contents
 
@@ -168,6 +168,7 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 
 | Name               | Source                                                                                                  |
 | ------------------ | ------------------------------------------------------------------------------------------------------- |
+| formatDate         | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/dates/format-date.ts)          |
 | getBrowserTimezone | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/dates/get-browser-timezone.ts) |
 
 ### Events
@@ -252,6 +253,7 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 | ------------------ | -------------------------------------------------------------------------------------------------------- |
 | callIfExists       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/utilities/call-if-exists.ts)    |
 | emptyFunction      | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/utilities/empty-function.ts)    |
+| generateUUID       | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/utilities/generate-uuid.ts)     |
 | makeCancelable     | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/utilities/make-cancelable.ts)   |
 | throwError         | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/utilities/throw-error.ts)       |
 | HTTP StatusCodes   | [source](https://github.com/feedzai/js-utilities/blob/main/src/functions/constants/http-status-codes.ts) |
@@ -271,6 +273,8 @@ import * as JS_UTILS from "@feedzai/js-utilities";
 | useConstant         | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-constant.ts)           |
 | useCopyToClipboard  | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-copy-to-clipboard.ts)  |
 | useEffectOnce       | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-effect-once.ts)        |
+| useEnsuredForwardedRef | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-ensured-forwarded-ref.ts) |
+| useIntersection     | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-intersection.ts)       |
 | useLifecycle        | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-lifecycle.ts)          |
 | useLiveRef          | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-live-ref.ts)           |
 | useMergeRefs        | [source](https://github.com/feedzai/js-utilities/tree/main/src/hooks/use-merge-refs.ts)         |
@@ -288,13 +292,13 @@ To run tests locally:
 
 ```
 # using npm
-npm run test:open
+npm run test:unit
 
 # using npm (headless)
 npm run test
 
 # using yarn
-yarn test:open
+yarn test:unit
 
 # using yarn (headless)
 yarn test

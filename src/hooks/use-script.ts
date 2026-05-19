@@ -15,9 +15,9 @@ const cachedScripts: string[] = [];
  *
  * @example
  * ```tsx
- * import { useSafeLayoutEffect } from '@feedzai/js-utilities/hooks';
+ * import { useScript } from '@feedzai/js-utilities/hooks';
  * ...
- * const [loaded, error] = useScript("")
+ * const [loaded, error] = useScript('')
  * ```
  */
 export function useScript(

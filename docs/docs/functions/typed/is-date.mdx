@@ -15,13 +15,13 @@ function isDate(value: any): value is Date;
 ```typescript
 import { isDate } from '@feedzai/js-utilities';
 
-isDate(new Date()))
+isDate(new Date())
 //-> true
 
 isDate("2024-02-18")
 //-> false
 
-isDate(123))
+isDate(123)
 //-> false
 
 isDate([2024, 2, 18])

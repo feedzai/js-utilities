@@ -265,6 +265,12 @@ describe("flatten", () => {
     const result = _.flatten(array);
     expect(result).to.deep.equal([]);
   });
+
+  it("should fully flatten when level exceeds the nesting depth", () => {
+    const array = [1, [2, [3, [4]], 5]];
+    const result = _.flatten(array, 5);
+    expect(result).to.deep.equal([1, 2, 3, 4, 5]);
+  });
 });
 
 describe("find", () => {

@@ -61,7 +61,7 @@ function generateFallbackUUID() {
  *
  * @example
  * ```ts
- * import { generateUUID } from "@feedzai/react-utilities";
+ * import { generateUUID } from "@feedzai/js-utilities";
  *
  * const uuid = generateUUID(); // "123e4567-e89b-12d3-a456-426614174000"
  * ```

@@ -15,10 +15,10 @@
  * // true
  *
  * isObject([1, 2, 3])
- * // true
+ * // false
  *
  * isObject(() => {})
- * // true
+ * // false
  *
  * isObject(null)
  * // false

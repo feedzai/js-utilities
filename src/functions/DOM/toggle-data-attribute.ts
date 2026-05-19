@@ -5,7 +5,7 @@
  */
 
 /**
- * Adds a data attribute to a DOM element, without its state bein rendered as a value
+ * Adds a data attribute to a DOM element, without its state being rendered as a value
  *
  * @example
  *

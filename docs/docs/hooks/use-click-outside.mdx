@@ -21,7 +21,7 @@ function App(props) {
   const DROPDOWN_REF = useRef();
 
   useClickOutside(
-    DROPDROWN_REF,
+    DROPDOWN_REF,
     () => props.closeDropdown(),
     props.shouldClose,
   );

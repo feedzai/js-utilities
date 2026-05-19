@@ -13,16 +13,16 @@
  *
  * const array = [1, [2, [3, [4]], 5]]
  *
- * flatten(array, 5]])
- * // => [1, 2, [3, [4]], 5]
+ * flatten(array, 5)
+ * // => [1, 2, 3, 4, 5]
  *
  * flatten(array, true)
  * // => [1, 2, 3, 4, 5]
  *
- * flattenDepth(array, 1)
+ * flatten(array, 1)
  * // => [1, 2, [3, [4]], 5]
  *
- * flattenDepth(array, 2)
+ * flatten(array, 2)
  * // => [1, 2, 3, [4], 5]
  */
 export function flatten<T>(arr: T[], level?: number | boolean) {
